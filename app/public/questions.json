@@ -1,0 +1,249 @@
+{
+  "app_title": "Hifazat Dojo: AI-Powered Multi-Level Scam aur Phishing Awareness Game",
+  "offline_notice": "All scenarios are fictional training examples. Never enter real passwords, OTPs, CNIC details, or bank details.",
+  "questions": [
+    {
+      "id": "L1Q01", "level": 1, "title_en": "Lucky Prize Message", "title_ur": "انعام کا جعلی پیغام",
+      "scenario": "Fictional SMS: 'Mubarak ho! Aap ne super prize jeeta hai. Prize lene ke liye apna password bhejein.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "انعام کے بدلے پاس ورڈ مانگنا خطرے کی نشانی ہے۔", "explanation_ur": "یہ اسکیم ہے۔ کوئی جائز انعام دینے والا آپ کا پاس ورڈ نہیں مانگتا۔", "explanation_en": "This is a scam. A genuine prize organizer will not ask for your password.", "difficulty": "Easy"
+    },
+    {
+      "id": "L1Q02", "level": 1, "title_en": "Unknown Game Link", "title_ur": "نامعلوم گیم لنک",
+      "scenario": "Fictional WhatsApp message from an unknown person: 'Free diamonds ke liye is link ko kholo aur apna game password likho.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "نامعلوم لنک اور پاس ورڈ مانگنے سے بچیں۔", "explanation_ur": "یہ اسکیم ہے۔ نامعلوم لنک اکاؤنٹ یا موبائل کو نقصان پہنچا سکتا ہے۔", "explanation_en": "This is a scam. An unknown link can harm your account or device.", "difficulty": "Easy"
+    },
+    {
+      "id": "L1Q03", "level": 1, "title_en": "Class Notice Board", "title_ur": "کلاس نوٹس بورڈ",
+      "scenario": "Your teacher shows tomorrow's quiz timetable on the classroom notice board. No information is requested from you.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Safe",
+      "hint_ur": "کلاس کا نوٹس بورڈ معلومات مانگے بغیر خبر دیتا ہے۔", "explanation_ur": "یہ محفوظ ہے۔ استاد کا کلاس میں دیا گیا ٹائم ٹیبل عام معلومات ہے۔", "explanation_en": "This is safe. A timetable announced by your teacher in class is normal information.", "difficulty": "Easy"
+    },
+    {
+      "id": "L1Q04", "level": 1, "title_en": "Password Request", "title_ur": "پاس ورڈ مانگنے والا پیغام",
+      "scenario": "Fictional SMS: 'Aap ka account verify karna hai. Apna password reply mein bhej dein.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "پاس ورڈ صرف آپ کا راز ہے۔", "explanation_ur": "یہ اسکیم ہے۔ پاس ورڈ کسی میسج، کال یا دوست کو بھی نہ دیں۔", "explanation_en": "This is a scam. Never share your password in a message, call, or with a friend.", "difficulty": "Easy"
+    },
+    {
+      "id": "L1Q05", "level": 1, "title_en": "Free Tablet Claim", "title_ur": "مفت ٹیبلٹ کا دعویٰ",
+      "scenario": "Fictional message: 'Aap ko free tablet mila hai. Delivery fee bhejne ke liye wallet PIN batayein.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "PIN مانگنے والا مفت تحفہ قابلِ بھروسا نہیں ہوتا۔", "explanation_ur": "یہ اسکیم ہے۔ PIN یا wallet کی معلومات کبھی نہ بتائیں۔", "explanation_en": "This is a scam. Never share a PIN or wallet details to claim a gift.", "difficulty": "Easy"
+    },
+    {
+      "id": "L1Q06", "level": 1, "title_en": "Strong Password Advice", "title_ur": "مضبوط پاس ورڈ کی نصیحت",
+      "scenario": "A school poster says: 'Use a long password with words, numbers, and symbols. Do not write the password on the poster.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Safe",
+      "hint_ur": "اچھی نصیحت آپ سے راز نہیں مانگتی۔", "explanation_ur": "یہ محفوظ ہے۔ پوسٹر صرف مضبوط پاس ورڈ بنانے کی ہدایت دے رہا ہے۔", "explanation_en": "This is safe. The poster gives password advice and does not ask for your secret.", "difficulty": "Easy"
+    },
+    {
+      "id": "L1Q07", "level": 1, "title_en": "Urgent Account Warning", "title_ur": "فوری اکاؤنٹ وارننگ",
+      "scenario": "Fictional SMS: 'Abhi reply karo warna tumhara game account hamesha ke liye band ho jayega.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "ڈرانا اور جلدی کروانا دھوکے کی عام چال ہے۔", "explanation_ur": "یہ اسکیم ہے۔ گھبرا کر جواب نہ دیں، کسی بڑے شخص سے پوچھیں۔", "explanation_en": "This is a scam. Do not panic or reply; ask a trusted adult.", "difficulty": "Easy"
+    },
+    {
+      "id": "L1Q08", "level": 1, "title_en": "Friend's New Number", "title_ur": "دوست کا نیا نمبر",
+      "scenario": "A message says: 'Main tumhara dost hoon, mera naya number hai. Mujhe turant paisay bhejo.' The sender cannot answer a simple question only your friend knows.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "پہلے پرانے نمبر یا آمنے سامنے تصدیق کریں۔", "explanation_ur": "یہ اسکیم ہو سکتی ہے۔ رقم بھیجنے سے پہلے دوست سے دوسرے طریقے سے تصدیق کریں۔", "explanation_en": "This may be a scam. Verify with your friend another way before sending money.", "difficulty": "Easy"
+    },
+    {
+      "id": "L1Q09", "level": 1, "title_en": "Family Rule", "title_ur": "گھر کا حفاظتی اصول",
+      "scenario": "Your parent says: 'Unknown message aaye to link na kholo. Pehle mujhe dikhao.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Safe",
+      "hint_ur": "محفوظ اصول آپ کو سوچنے کا وقت دیتے ہیں۔", "explanation_ur": "یہ محفوظ ہے۔ مشکوک پیغام کسی قابلِ اعتماد بڑے شخص کو دکھانا اچھی عادت ہے۔", "explanation_en": "This is safe. Showing suspicious messages to a trusted adult is a good habit.", "difficulty": "Easy"
+    },
+    {
+      "id": "L1Q10", "level": 1, "title_en": "Fake Survey Reward", "title_ur": "جعلی سروے انعام",
+      "scenario": "Fictional pop-up: 'Two questions ka jawab do aur free recharge lo. Apna phone unlock code likho.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "فون کا unlock code بھی راز ہے۔", "explanation_ur": "یہ اسکیم ہے۔ کسی بھی انعام کے لیے اپنا unlock code نہ دیں۔", "explanation_en": "This is a scam. Never give your phone unlock code for a reward.", "difficulty": "Easy"
+    },
+
+    {
+      "id": "L2Q01", "level": 2, "title_en": "Look-Alike School Link", "title_ur": "اسکول جیسا دکھنے والا لنک",
+      "scenario": "Fictional email says it is from your school and asks you to sign in on a page with a strange, misspelled address. It asks for your password.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "غلط ہجے اور پاس ورڈ مانگنے والی لنک سے بچیں۔", "explanation_ur": "یہ phishing ہے۔ اسکول سے سرکاری راستے سے پوچھ کر تصدیق کریں۔", "explanation_en": "This is phishing. Confirm through the school's official contact method.", "difficulty": "Medium"
+    },
+    {
+      "id": "L2Q02", "level": 2, "title_en": "One-Time Code Request", "title_ur": "ایک بار استعمال ہونے والا کوڈ",
+      "scenario": "Fictional caller says: 'Aap ko jo temporary verification code mila hai woh mujhe bata dein, main account theek kar deta hoon.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "تصدیقی کوڈ صرف آپ کے لیے ہوتا ہے۔", "explanation_ur": "یہ اسکیم ہے۔ کوئی ادارہ آپ سے temporary verification code نہیں مانگتا۔", "explanation_en": "This is a scam. No legitimate service should ask you for a temporary verification code.", "difficulty": "Medium"
+    },
+    {
+      "id": "L2Q03", "level": 2, "title_en": "Hacked Account Cry for Help", "title_ur": "ہیک اکاؤنٹ سے مدد کی پکار",
+      "scenario": "A known contact's WhatsApp account sends: 'Emergency! Mujhe paisay bhejo.' The message has unusual spelling and the contact does not answer your call.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "کال یا دوسرے قابلِ اعتماد راستے سے تصدیق کریں۔", "explanation_ur": "یہ ممکنہ طور پر hacked account ہے۔ رقم بھیجنے سے پہلے شخص کی شناخت یقینی بنائیں۔", "explanation_en": "This may be a hacked account. Confirm the person's identity before sending money.", "difficulty": "Medium"
+    },
+    {
+      "id": "L2Q04", "level": 2, "title_en": "Too-Good Job Offer", "title_ur": "حد سے زیادہ اچھی نوکری",
+      "scenario": "Fictional message: 'No interview, no skills needed. Ghar se daily bohat zyada paisay kamao. Registration fee abhi bhejo.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "نوکری سے پہلے فیس مانگنا خطرے کی علامت ہے۔", "explanation_ur": "یہ اسکیم ہے۔ اصلی نوکری کی تصدیق کریں اور پہلے رقم نہ بھیجیں۔", "explanation_en": "This is a scam. Verify a job independently and do not pay money first.", "difficulty": "Medium"
+    },
+    {
+      "id": "L2Q05", "level": 2, "title_en": "Official App Update", "title_ur": "سرکاری ایپ اپ ڈیٹ",
+      "scenario": "Your teacher tells the class to update the school's learning app using the same app store already installed on the school tablet. The app store shows the school name and no password is requested.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Safe",
+      "hint_ur": "قابلِ اعتماد استاد اور سرکاری ایپ اسٹور اہم نشانیاں ہیں۔", "explanation_ur": "یہ محفوظ ہے۔ اپ ڈیٹ منظور شدہ app store سے اور استاد کی ہدایت پر ہو رہی ہے۔", "explanation_en": "This is safe. The update comes from the approved app store and your teacher's instruction.", "difficulty": "Medium"
+    },
+    {
+      "id": "L2Q06", "level": 2, "title_en": "Wallet Refund Trap", "title_ur": "ڈیجیٹل والیٹ ریفنڈ کا جال",
+      "scenario": "Fictional SMS: 'Aap ko refund mila hai. Refund receive karne ke liye apna PIN aur identity details reply karein.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "ریفنڈ لینے کے لیے PIN دینا ضروری نہیں ہوتا۔", "explanation_ur": "یہ اسکیم ہے۔ PIN اور شناختی معلومات راز ہیں۔", "explanation_en": "This is a scam. A refund does not require you to share your PIN or identity details.", "difficulty": "Medium"
+    },
+    {
+      "id": "L2Q07", "level": 2, "title_en": "Quiz Form with Secrets", "title_ur": "راز مانگنے والا کوئز فارم",
+      "scenario": "Fictional online quiz promises a certificate but asks for your account password and recovery answer before starting.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "کوئز کو پاس ورڈ اور recovery جواب کی ضرورت نہیں۔", "explanation_ur": "یہ phishing ہے۔ ایسے فارم بند کریں اور استاد کو بتائیں۔", "explanation_en": "This is phishing. Close such forms and tell a teacher.", "difficulty": "Medium"
+    },
+    {
+      "id": "L2Q08", "level": 2, "title_en": "Verified Family Check", "title_ur": "گھر والوں سے تصدیق",
+      "scenario": "A cousin asks for help from a new account. You call the cousin through a saved family contact, confirm the request, and only then tell your parent.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Safe",
+      "hint_ur": "دوسرے قابلِ اعتماد طریقے سے تصدیق اچھی حفاظت ہے۔", "explanation_ur": "یہ محفوظ طریقہ ہے۔ آپ نے نئے اکاؤنٹ پر بھروسا کرنے کے بجائے تصدیق کی۔", "explanation_en": "This is safe behavior. You verified through a trusted method instead of trusting a new account.", "difficulty": "Medium"
+    },
+    {
+      "id": "L2Q09", "level": 2, "title_en": "Fake Delivery Fee", "title_ur": "جعلی ڈلیوری فیس",
+      "scenario": "Fictional message: 'Aap ka parcel ruk gaya hai. Chhoti fee bhejein aur message mein diya gaya link kholen.' You did not order anything.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "جس چیز کا آرڈر نہ دیا ہو، اس کی فیس نہ دیں۔", "explanation_ur": "یہ اسکیم ہے۔ لنک نہ کھولیں اور رقم نہ بھیجیں۔", "explanation_en": "This is a scam. Do not open the link or send money for an order you did not make.", "difficulty": "Medium"
+    },
+    {
+      "id": "L2Q10", "level": 2, "title_en": "Two-Step Login Advice", "title_ur": "دو مرحلے والی لاگ اِن نصیحت",
+      "scenario": "A school cyber-safety lesson explains that you should turn on two-step login yourself in your account settings. It does not ask you to share any code.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Safe",
+      "hint_ur": "دو مرحلے والی حفاظت کا code کسی کو نہیں دیا جاتا۔", "explanation_ur": "یہ محفوظ نصیحت ہے۔ دو مرحلے والی حفاظت اکاؤنٹ کو بہتر بناتی ہے۔", "explanation_en": "This is safe advice. Two-step login improves account security when you keep codes private.", "difficulty": "Medium"
+    },
+
+    {
+      "id": "L3Q01", "level": 3, "title_en": "Guaranteed Investment Return", "title_ur": "یقینی سرمایہ کاری منافع",
+      "scenario": "Fictional group message: 'Aaj paisa lagao, kal guaranteed double amount lo. Risk zero hai. Screenshot bhej kar join karo.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "یقینی اور فوری دگنا منافع خطرے کی بڑی نشانی ہے۔", "explanation_ur": "یہ ممکنہ سرمایہ کاری اسکیم ہے۔ کسی قابلِ اعتماد بالغ اور سرکاری معلومات سے پہلے تصدیق کریں۔", "explanation_en": "This is likely an investment scam. Verify independently with a trusted adult and official information first.", "difficulty": "Hard"
+    },
+    {
+      "id": "L3Q02", "level": 3, "title_en": "Principal's Urgent Request", "title_ur": "پرنسپل کے نام سے فوری درخواست",
+      "scenario": "A message uses the principal's photo and says: 'School emergency hai. Gift cards khareedo aur codes bhejo.' It comes from an unfamiliar account.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "تصویر اور نام کی نقل کی جا سکتی ہے، خود اسکول سے تصدیق کریں۔", "explanation_ur": "یہ impersonation scam ہے۔ پرنسپل یا اسکول دفتر سے براہِ راست تصدیق کریں۔", "explanation_en": "This is an impersonation scam. Contact the principal or school office directly to verify.", "difficulty": "Hard"
+    },
+    {
+      "id": "L3Q03", "level": 3, "title_en": "Prize QR Code", "title_ur": "انعام کا کیو آر کوڈ",
+      "scenario": "A poster at an unknown stall says: 'Scan this QR code for a prize.' After scanning, the page asks for your wallet PIN.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "QR code بھی خطرناک صفحے تک لے جا سکتا ہے۔", "explanation_ur": "یہ اسکیم ہے۔ نامعلوم QR code سے کھلنے والے صفحے پر PIN نہ دیں۔", "explanation_en": "This is a scam. Do not enter a PIN on a page opened by an unknown QR code.", "difficulty": "Hard"
+    },
+    {
+      "id": "L3Q04", "level": 3, "title_en": "Fake Banking Page", "title_ur": "جعلی بینک صفحہ",
+      "scenario": "Fictional email says 'security update' and opens a page that copies a bank design but has spelling mistakes and asks for card details plus password.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "بینک کا لوگو کافی ثبوت نہیں، غلط ہجے اور راز مانگنا خطرہ ہے۔", "explanation_ur": "یہ phishing page ہے۔ ای میل سے کھلنے والے صفحے پر حساس معلومات نہ دیں۔", "explanation_en": "This is a phishing page. Do not enter sensitive information on a page opened from that email.", "difficulty": "Hard"
+    },
+    {
+      "id": "L3Q05", "level": 3, "title_en": "Known Shop's Printed QR", "title_ur": "جانی پہچانی دکان کا چھپا ہوا کیو آر",
+      "scenario": "At a shop you already know, the cashier shows a printed payment QR code beside the counter. Your parent checks the payee name on their own payment app before paying.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Safe",
+      "hint_ur": "ادائیگی سے پہلے وصول کنندہ کا نام چیک کرنا ضروری ہے۔", "explanation_ur": "یہ محفوظ رویہ ہے کیونکہ بالغ شخص نے دکان اور وصول کنندہ دونوں کی تصدیق کی۔", "explanation_en": "This is safe behavior because the adult verifies both the shop and the payee name before paying.", "difficulty": "Hard"
+    },
+    {
+      "id": "L3Q06", "level": 3, "title_en": "Account Recovery Trap", "title_ur": "اکاؤنٹ واپس لینے کا جال",
+      "scenario": "Fictional DM: 'I can recover your lost social account. Send your recovery email, password, and temporary code now.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "اکاؤنٹ کی مدد کے نام پر راز مانگنا دھوکا ہے۔", "explanation_ur": "یہ اسکیم ہے۔ صرف اصل app یا website کے official recovery process کو استعمال کریں۔", "explanation_en": "This is a scam. Use only the official recovery process inside the real app or website.", "difficulty": "Hard"
+    },
+    {
+      "id": "L3Q07", "level": 3, "title_en": "Screenshot Proof Demand", "title_ur": "اسکرین شاٹ ثبوت کا مطالبہ",
+      "scenario": "Fictional seller says: 'Order confirm karne ke liye apne payment app ka full screenshot bhejo.' The screenshot would show your balance and private details.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "پورا اسکرین شاٹ نجی معلومات ظاہر کر سکتا ہے۔", "explanation_ur": "یہ خطرناک ہے۔ نجی مالی اسکرین شاٹ کسی seller کو نہ بھیجیں۔", "explanation_en": "This is unsafe. Do not send a seller a financial screenshot containing private information.", "difficulty": "Hard"
+    },
+    {
+      "id": "L3Q08", "level": 3, "title_en": "School Email Verification", "title_ur": "اسکول ای میل کی تصدیق",
+      "scenario": "You receive an assignment message in the same official school classroom app you use daily. The teacher also announces the assignment in class, and the message asks for no password or payment.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Safe",
+      "hint_ur": "ایک سے زیادہ قابلِ اعتماد جگہوں سے تصدیق اچھی علامت ہے۔", "explanation_ur": "یہ محفوظ ہے۔ پیغام معمول کے سرکاری app میں ہے اور کلاس میں بھی بتایا گیا ہے۔", "explanation_en": "This is safe. The message is in the normal official app and was confirmed in class.", "difficulty": "Hard"
+    },
+    {
+      "id": "L3Q09", "level": 3, "title_en": "Charity Impersonation", "title_ur": "خیراتی ادارے کی نقل",
+      "scenario": "Fictional social post uses disaster photos and says: 'Only today, donate immediately by sending money to this personal wallet.' It gives no verifiable organization details.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "جذباتی دباؤ اور ذاتی والیٹ احتیاط مانگتے ہیں۔", "explanation_ur": "یہ ممکنہ scam ہے۔ خیرات صرف تصدیق شدہ ادارے کے سرکاری طریقے سے دیں۔", "explanation_en": "This may be a scam. Donate only through a verified organization's official method.", "difficulty": "Hard"
+    },
+    {
+      "id": "L3Q10", "level": 3, "title_en": "Security Settings Check", "title_ur": "سکیورٹی سیٹنگز چیک",
+      "scenario": "A student opens the privacy and security settings inside the real app already installed on their own device, then turns on login alerts without sharing details with anyone.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Safe",
+      "hint_ur": "اپنی ایپ کی اپنی settings میں حفاظت بڑھانا درست ہے۔", "explanation_ur": "یہ محفوظ ہے۔ آپ اپنی app settings میں خود security بہتر کر رہے ہیں۔", "explanation_en": "This is safe. You are improving security inside your own app settings.", "difficulty": "Hard"
+    },
+
+    {
+      "id": "L4Q01", "level": 4, "title_en": "AI Voice Emergency", "title_ur": "اے آئی آواز کی ایمرجنسی",
+      "scenario": "A call sounds exactly like a family member and says: 'Main musibat mein hoon, abhi paisay bhejo. Kisi ko mat batana.' The caller refuses a family verification question.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "آواز کی نقل ہو سکتی ہے، خاندانی سوال اور واپس کال سے تصدیق کریں۔", "explanation_ur": "یہ AI voice scam ہو سکتا ہے۔ گھبرائیں نہیں، محفوظ نمبر پر خود واپس کال کریں۔", "explanation_en": "This may be an AI voice scam. Do not panic; call back using a trusted saved number.", "difficulty": "Very Hard"
+    },
+    {
+      "id": "L4Q02", "level": 4, "title_en": "Fake Bank Call", "title_ur": "جعلی بینک کال",
+      "scenario": "Fictional caller says: 'Main aap ke bank security team se bol raha hoon. Card bachane ke liye PIN aur temporary code abhi bata dein.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "PIN اور temporary code کال پر کبھی نہیں بتائے جاتے۔", "explanation_ur": "یہ scam ہے۔ کال بند کریں اور card کے سرکاری نمبر سے خود رابطہ کریں۔", "explanation_en": "This is a scam. End the call and contact the bank using its official number yourself.", "difficulty": "Very Hard"
+    },
+    {
+      "id": "L4Q03", "level": 4, "title_en": "SIM Swap Warning", "title_ur": "سم تبدیل ہونے کی وارننگ",
+      "scenario": "Your phone suddenly loses network service. Then an unknown caller asks you to share a verification code 'to restore your SIM.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "نیٹ ورک بند ہو تو code شیئر نہ کریں، سروس مرکز سے خود رابطہ کریں۔", "explanation_ur": "یہ SIM-swap scam ہو سکتا ہے۔ فوراً اپنے telecom provider کے verified support channel سے رابطہ کریں۔", "explanation_en": "This may be a SIM-swap scam. Contact your telecom provider through a verified support channel immediately.", "difficulty": "Very Hard"
+    },
+    {
+      "id": "L4Q04", "level": 4, "title_en": "Marketplace Advance Payment", "title_ur": "آن لائن مارکیٹ کی ایڈوانس ادائیگی",
+      "scenario": "Fictional seller offers a very cheap phone, refuses video proof, and demands full advance payment to a personal wallet before delivery.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "بہت سستی قیمت اور مکمل پیشگی رقم خطرے کی علامت ہے۔", "explanation_ur": "یہ ممکنہ marketplace fraud ہے۔ seller کی تصدیق اور محفوظ خریداری طریقہ استعمال کریں۔", "explanation_en": "This may be marketplace fraud. Verify the seller and use a safer purchase method.", "difficulty": "Very Hard"
+    },
+    {
+      "id": "L4Q05", "level": 4, "title_en": "Government Fine Threat", "title_ur": "سرکاری جرمانے کی دھمکی",
+      "scenario": "Fictional call claims to be from a government office: 'Aap ka record block hoga. Fine bachane ke liye abhi personal wallet par payment karo.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "دھمکی اور ذاتی والیٹ پر رقم مانگنا شک کی بات ہے۔", "explanation_ur": "یہ scam ہے۔ کال کرنے والے کو معلومات نہ دیں اور ادارے کے official channel سے تصدیق کریں۔", "explanation_en": "This is a scam. Do not share information; verify through the agency's official channel.", "difficulty": "Very Hard"
+    },
+    {
+      "id": "L4Q06", "level": 4, "title_en": "Verified Reporting Plan", "title_ur": "تصدیق شدہ رپورٹنگ پلان",
+      "scenario": "After a suspicious message, a parent saves a screenshot, blocks the sender, tells the family, and checks the official cybercrime reporting channel through a trusted government source.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Safe",
+      "hint_ur": "ثبوت محفوظ کرنا، بلاک کرنا اور سرکاری راستے سے رپورٹ کرنا درست عمل ہے۔", "explanation_ur": "یہ محفوظ طریقہ ہے۔ مشکوک پیغام کا جواب دینے کے بجائے ثبوت رکھیں اور درست جگہ رپورٹ کریں۔", "explanation_en": "This is safe behavior. Preserve evidence, avoid replying, and report through a verified official route.", "difficulty": "Very Hard"
+    },
+    {
+      "id": "L4Q07", "level": 4, "title_en": "Remote Access Offer", "title_ur": "ریموٹ رسائی کی پیشکش",
+      "scenario": "Fictional caller says: 'Aap ke phone mein virus hai. Main app install karwa kar aap ka phone remotely control karunga.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "نامعلوم شخص کو فون کنٹرول کرنے کی اجازت نہ دیں۔", "explanation_ur": "یہ scam ہے۔ نامعلوم app install نہ کریں اور trusted technician یا family member سے مدد لیں۔", "explanation_en": "This is a scam. Do not install an unknown app or give a stranger control of your phone.", "difficulty": "Very Hard"
+    },
+    {
+      "id": "L4Q08", "level": 4, "title_en": "Fake Buyer Overpayment", "title_ur": "جعلی خریدار کی اضافی ادائیگی",
+      "scenario": "Fictional buyer says they sent extra money for an item and asks you to 'refund' it by entering your wallet PIN on a link they provide.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "رقم ملنے کی تصدیق صرف اپنی ایپ میں کریں، لنک پر نہیں۔", "explanation_ur": "یہ marketplace scam ہے۔ اپنے account میں خود چیک کریں اور PIN کسی link پر نہ ڈالیں۔", "explanation_en": "This is a marketplace scam. Check your account yourself and never enter a PIN through their link.", "difficulty": "Very Hard"
+    },
+    {
+      "id": "L4Q09", "level": 4, "title_en": "Family Safe Word", "title_ur": "گھر کا خفیہ حفاظتی لفظ",
+      "scenario": "A family agrees on a private safe word for emergencies. When a surprising call asks for money, they verify the safe word by calling a saved family number.",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Safe",
+      "hint_ur": "خاندانی safe word اور واپس کال کرنے سے AI آواز کے دھوکے سے بچا جا سکتا ہے۔", "explanation_ur": "یہ محفوظ عادت ہے۔ پہلے سے طے شدہ safe word خاندان کو جعلی ایمرجنسی کال پہچاننے میں مدد دیتا ہے۔", "explanation_en": "This is safe behavior. A pre-agreed family safe word can help detect a fake emergency call.", "difficulty": "Very Hard"
+    },
+    {
+      "id": "L4Q10", "level": 4, "title_en": "Community Alert Forward", "title_ur": "کمیونٹی الرٹ فارورڈ",
+      "scenario": "A message asks you to forward an alarming scam warning to everyone immediately. It gives no source, mixes fear with urgency, and asks people to send identity details for 'protection.'",
+      "question": "Kya yeh Safe hai ya Scam?", "options": ["Safe", "Scam"], "correct_answer": "Scam",
+      "hint_ur": "غیر مصدقہ خوف پھیلانے والے پیغام کو آگے نہ بھیجیں۔", "explanation_ur": "یہ scam یا misinformation ہو سکتا ہے۔ پہلے trusted source سے چیک کریں، پھر ہی بات پھیلائیں۔", "explanation_en": "This may be a scam or misinformation. Check a trusted source before forwarding anything.", "difficulty": "Very Hard"
+    }
+  ]
+}
