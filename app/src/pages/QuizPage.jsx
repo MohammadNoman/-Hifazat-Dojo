@@ -56,11 +56,11 @@ export default function QuizPage() {
     return <Navigate to="/levels" replace />;
   }
   if (currentLevel !== levelNum) {
-    // Render graceful loading shell while state syncs
     return (
-      <div className="page-container flex items-center justify-center">
-        <div className="card text-center p-8">
-          <p className="text-navy-300 text-lg">⏳ Loading Dojo Level...</p>
+      <div className="page-container flex items-center justify-center min-h-[400px]">
+        <div className="card text-center p-8 border-shield-500/30">
+          <div className="text-4xl mb-3 animate-spin">🛡️</div>
+          <p className="text-navy-200 text-lg font-bold">Initializing Dojo Challenge...</p>
         </div>
       </div>
     );
@@ -165,80 +165,92 @@ export default function QuizPage() {
 
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
-  // Detect scenario communication medium for realistic simulator framing
+  // Medium Classification & Authentic Simulator Layout
   const scenarioText = question.scenario.toLowerCase();
-  let mediumType = 'sms';
-  let mediumBadge = { icon: '💬', label: 'SMS Message', border: 'border-blue-500/40' };
-
+  let medium = 'sms';
   if (scenarioText.includes('call') || scenarioText.includes('caller')) {
-    mediumType = 'call';
-    mediumBadge = { icon: '📞', label: 'Incoming Call', border: 'border-amber-500/40' };
+    medium = 'call';
   } else if (scenarioText.includes('whatsapp')) {
-    mediumType = 'whatsapp';
-    mediumBadge = { icon: '🟢', label: 'WhatsApp Chat', border: 'border-emerald-500/40' };
+    medium = 'whatsapp';
   } else if (scenarioText.includes('email')) {
-    mediumType = 'email';
-    mediumBadge = { icon: '✉️', label: 'Email Inbox', border: 'border-purple-500/40' };
-  } else if (scenarioText.includes('qr') || scenarioText.includes('scan')) {
-    mediumType = 'qr';
-    mediumBadge = { icon: '📷', label: 'QR Scan / Stall', border: 'border-cyan-500/40' };
+    medium = 'email';
+  } else if (scenarioText.includes('qr') || scenarioText.includes('scan') || scenarioText.includes('poster')) {
+    medium = 'qr';
   }
 
   return (
     <div className={`page-container max-w-3xl ${isUrdu ? 'rtl' : ''}`}>
-      {/* Top Bar: Level Name, Question Count & Live Score */}
-      <div className="flex items-center justify-between mb-4 sm:mb-6">
-        <div>
-          <h2 className="text-base sm:text-lg font-bold text-navy-200 flex items-center gap-1.5">
-            <span>{level.icon}</span>
-            <span>{isUrdu ? level.name_ur : level.name_en}</span>
-          </h2>
-          <p className="text-navy-400 text-xs sm:text-sm">
-            {isUrdu
-              ? `سوال ${currentQuestionIndex + 1} از ۱۰`
-              : `Question ${currentQuestionIndex + 1} of 10`}
-          </p>
-        </div>
-
-        <div className="text-right">
-          <p className="text-shield-400 font-black text-lg sm:text-xl">
-            {isUrdu ? `سکور: ${score}` : `Score: ${score}`}
-          </p>
-          {streak > 1 && (
-            <p className="text-amber-400 text-xs sm:text-sm font-bold animate-pulse-soft">
-              🔥 {isUrdu ? `سلسلہ: ${streak}` : `Streak: ${streak}`}
-            </p>
-          )}
-        </div>
-      </div>
-
-      {/* Progress Bar */}
-      <div className="w-full h-2.5 bg-navy-800 rounded-full mb-6 overflow-hidden border border-navy-700/60">
-        <div
-          className="h-full bg-gradient-to-r from-shield-500 to-shield-300 rounded-full transition-all duration-300 ease-out"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
-
-      {/* Scenario Card Simulation */}
-      <div className={`card-glow mb-6 animate-fade-in border-2 ${mediumBadge.border}`}>
-        {/* Medium Header */}
-        <div className="flex items-center justify-between pb-3 mb-3 border-b border-navy-700/60 text-xs text-navy-300">
+      {/* Tactical Top Bar: Belt Badge, Progress, Live Points & Streak */}
+      <div className="card p-3 sm:p-4 mb-4 sm:mb-6 border-navy-700/80 bg-navy-900/90 shadow-xl">
+        <div className="flex items-center justify-between gap-2 mb-2.5">
           <div className="flex items-center gap-2">
-            <span className="text-base">{mediumBadge.icon}</span>
-            <span className="font-semibold uppercase tracking-wider">{mediumBadge.label}</span>
+            <span className="text-2xl p-1.5 rounded-lg bg-navy-800 border border-navy-700">{level.icon}</span>
+            <div>
+              <h2 className="text-sm sm:text-base font-black text-white leading-tight">
+                {isUrdu ? level.name_ur : level.name_en}
+              </h2>
+              <p className="text-[11px] font-mono font-bold text-shield-400">
+                {isUrdu
+                  ? `چیلنج ${currentQuestionIndex + 1} از ۱۰`
+                  : `Challenge ${currentQuestionIndex + 1} of 10`}
+              </p>
+            </div>
           </div>
 
-          {/* Student Audio Narration & Recording Controls */}
+          <div className="flex items-center gap-3">
+            {streak > 1 && (
+              <div className="hidden xs:flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold animate-pulse-soft">
+                <span>🔥</span>
+                <span>{streak}x Streak</span>
+              </div>
+            )}
+            <div className="text-right">
+              <span className="text-[10px] uppercase font-bold text-navy-400 block tracking-wider">Score</span>
+              <span className="text-lg sm:text-2xl font-black text-shield-400 font-mono leading-none">
+                {score} <span className="text-xs text-navy-400 font-normal">pts</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* High-Tech Glowing Progress Bar */}
+        <div className="w-full h-2 bg-navy-950 rounded-full overflow-hidden border border-navy-800">
+          <div
+            className="h-full bg-gradient-to-r from-shield-500 via-emerald-400 to-teal-300 rounded-full transition-all duration-300 ease-out shadow-sm shadow-shield-400/50"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+      </div>
+
+      {/* Realistic Communication Simulator Window */}
+      <div className="card-glow mb-6 overflow-hidden border border-navy-700/80 shadow-2xl">
+        {/* Simulator Device Top Frame Bar */}
+        <div className="bg-navy-950/90 border-b border-navy-800 px-4 py-2.5 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="flex gap-1.5">
+              <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+              <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+            </div>
+            <span className="text-[11px] font-mono font-bold text-navy-300 ml-2 uppercase tracking-wider">
+              {medium === 'whatsapp' && '🟢 WhatsApp Protocol Simulation'}
+              {medium === 'call' && '📞 Voice Transmission Simulation'}
+              {medium === 'email' && '✉️ Secure Webmail Simulation'}
+              {medium === 'qr' && '📷 Tactical QR Scanner Simulation'}
+              {medium === 'sms' && '💬 SMS Cellular Simulation'}
+            </span>
+          </div>
+
+          {/* Exhibition Audio Narration & Student Voice Recording */}
           <div className="flex items-center gap-1.5 no-print">
             <button
               onClick={toggleScenarioAudio}
-              className={`px-2.5 py-1 rounded text-xs font-semibold flex items-center gap-1 transition-all ${
+              className={`px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1 transition-all cursor-pointer ${
                 isPlayingAudio
                   ? 'bg-shield-500 text-white animate-pulse'
-                  : 'bg-navy-700 hover:bg-navy-600 text-navy-200'
+                  : 'bg-navy-800 hover:bg-navy-700 text-navy-200 border border-navy-700'
               }`}
-              title="Student Narration Playback"
+              title="Narrate Scenario"
             >
               <span>{isPlayingAudio ? '⏹️' : '🔊'}</span>
               <span>{isPlayingAudio ? 'Stop' : 'Listen'}</span>
@@ -246,162 +258,257 @@ export default function QuizPage() {
 
             <button
               onClick={toggleRecording}
-              className={`px-2.5 py-1 rounded text-xs font-semibold flex items-center gap-1 transition-all ${
+              className={`px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1 transition-all cursor-pointer ${
                 isRecording
                   ? 'bg-danger-600 text-white animate-pulse'
-                  : 'bg-navy-700 hover:bg-navy-600 text-navy-200'
+                  : 'bg-navy-800 hover:bg-navy-700 text-navy-200 border border-navy-700'
               }`}
               title="Record Student Voice (Exhibition demo)"
             >
               <span>{isRecording ? '🔴' : '🎙️'}</span>
-              <span>{isRecording ? 'Recording...' : 'Record Voice'}</span>
+              <span className="hidden sm:inline">{isRecording ? 'Recording...' : 'Record Voice'}</span>
             </button>
           </div>
         </div>
 
-        {/* Scenario Body */}
-        <div className="mb-4">
-          <h3 className="text-xs sm:text-sm font-semibold text-shield-400 mb-2">
-            {isUrdu ? question.title_ur : question.title_en}
-          </h3>
-          <p className="text-white text-base sm:text-lg leading-relaxed font-medium bg-navy-900/60 p-4 rounded-xl border border-navy-700/50">
-            {question.scenario}
-          </p>
-        </div>
+        {/* Medium-Specific Simulation Display */}
+        <div className="p-4 sm:p-6 bg-gradient-to-b from-navy-950/60 to-navy-900/60">
+          {/* WhatsApp Layout */}
+          {medium === 'whatsapp' && (
+            <div className="max-w-md mx-auto rounded-2xl overflow-hidden border border-emerald-900/50 shadow-xl bg-[#0b141a]">
+              <div className="bg-[#1f2c34] p-3 flex items-center gap-3 border-b border-navy-800">
+                <div className="w-10 h-10 rounded-full bg-[#374248] flex items-center justify-center text-xl">👤</div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-white text-sm font-bold truncate">Unknown Contact</p>
+                  <p className="text-[#8696a0] text-xs">+92 300 0000000</p>
+                </div>
+                <div className="text-[#8696a0] text-xs">🔒 End-to-end encrypted</div>
+              </div>
+              <div className="p-4 space-y-3 bg-[#0b141a]">
+                <div className="bg-[#1f2c34] p-3 rounded-2xl rounded-tl-none max-w-[90%] border border-[#2a3942] text-white text-sm sm:text-base leading-relaxed">
+                  <p className="mb-2">{question.scenario}</p>
+                  <span className="text-[10px] text-[#8696a0] block text-right">11:42 AM</span>
+                </div>
+              </div>
+            </div>
+          )}
 
-        {/* Big Safe / Scam Interaction Prompt */}
-        <div className="pt-2">
-          <p className="text-shield-300 font-bold text-center text-lg sm:text-xl mb-4">
-            {question.question}
-          </p>
+          {/* Incoming Phone Call Layout */}
+          {medium === 'call' && (
+            <div className="max-w-md mx-auto rounded-2xl overflow-hidden border border-amber-900/40 bg-gradient-to-b from-navy-900 to-navy-950 p-6 text-center shadow-xl">
+              <div className="w-20 h-20 rounded-full bg-navy-800 border-2 border-amber-500/50 mx-auto mb-3 flex items-center justify-center text-4xl shadow-lg shadow-amber-500/10 animate-pulse-soft">
+                📞
+              </div>
+              <p className="text-amber-400 text-xs uppercase tracking-widest font-mono font-bold mb-1">Incoming Voice Call</p>
+              <h3 className="text-xl font-bold text-white mb-1">Unknown Number / Urgent Alert</h3>
+              <p className="text-navy-400 text-xs mb-4">Caller Audio Transcript:</p>
+              <div className="bg-navy-950/90 p-4 rounded-xl border border-navy-800 text-white text-sm sm:text-base leading-relaxed mb-4 text-left font-medium">
+                "{question.scenario}"
+              </div>
+              <div className="flex justify-center gap-8 text-xs font-bold text-navy-400">
+                <div className="flex flex-col items-center gap-1">
+                  <div className="w-12 h-12 rounded-full bg-danger-600/80 flex items-center justify-center text-xl text-white">✕</div>
+                  <span>Decline</span>
+                </div>
+                <div className="flex flex-col items-center gap-1">
+                  <div className="w-12 h-12 rounded-full bg-shield-500/80 flex items-center justify-center text-xl text-white">📞</div>
+                  <span>Answer</span>
+                </div>
+              </div>
+            </div>
+          )}
 
-          <div className="flex gap-3 sm:gap-6 justify-center">
-            <button
-              onClick={() => handleAnswer('Safe')}
-              disabled={isAnswered}
-              className={`btn-safe flex-1 max-w-[200px] ${
-                isAnswered
-                  ? selectedAnswer === 'Safe'
-                    ? question.correct_answer === 'Safe'
-                      ? 'ring-4 ring-shield-300 bg-shield-600'
-                      : 'ring-4 ring-danger-300 bg-danger-600'
-                    : 'opacity-40 cursor-not-allowed'
-                  : ''
-              }`}
-            >
-              <span>✅</span>
-              <span>Safe</span>
-            </button>
+          {/* Email Inbox Layout */}
+          {medium === 'email' && (
+            <div className="max-w-lg mx-auto rounded-xl overflow-hidden border border-navy-700 bg-navy-950 shadow-xl text-left">
+              <div className="bg-navy-900 p-3 border-b border-navy-800 flex items-center justify-between text-xs text-navy-300">
+                <span className="font-bold text-white flex items-center gap-1.5">
+                  <span>✉️</span> Webmail Client
+                </span>
+                <span className="bg-danger-900/40 border border-danger-500/40 text-danger-300 px-2 py-0.5 rounded text-[10px] font-bold">
+                  External Sender
+                </span>
+              </div>
+              <div className="p-4 space-y-2 border-b border-navy-800/80 text-xs">
+                <p><span className="text-navy-400">From:</span> <strong className="text-white">Official Support &lt;urgent-verify@mail-notice.net&gt;</strong></p>
+                <p><span className="text-navy-400">Subject:</span> <strong className="text-shield-300">{question.title_en}</strong></p>
+                <p><span className="text-navy-400">To:</span> <span className="text-navy-300">student@school.edu.pk</span></p>
+              </div>
+              <div className="p-4 text-white text-sm sm:text-base leading-relaxed bg-navy-950">
+                {question.scenario}
+              </div>
+            </div>
+          )}
 
-            <button
-              onClick={() => handleAnswer('Scam')}
-              disabled={isAnswered}
-              className={`btn-scam flex-1 max-w-[200px] ${
-                isAnswered
-                  ? selectedAnswer === 'Scam'
-                    ? question.correct_answer === 'Scam'
-                      ? 'ring-4 ring-shield-300 bg-shield-600'
-                      : 'ring-4 ring-danger-300 bg-danger-600'
-                    : 'opacity-40 cursor-not-allowed'
-                  : ''
-              }`}
-            >
-              <span>🚫</span>
-              <span>Scam</span>
-            </button>
+          {/* QR Scan / Poster Layout */}
+          {medium === 'qr' && (
+            <div className="max-w-md mx-auto rounded-2xl overflow-hidden border border-cyan-800/50 bg-navy-950 p-6 text-center shadow-xl">
+              <div className="w-24 h-24 mx-auto mb-4 border-2 border-dashed border-cyan-400/80 rounded-2xl flex items-center justify-center text-4xl bg-navy-900/80 relative">
+                <div className="absolute top-1 left-1 w-3 h-3 border-t-2 border-l-2 border-cyan-300" />
+                <div className="absolute top-1 right-1 w-3 h-3 border-t-2 border-r-2 border-cyan-300" />
+                <div className="absolute bottom-1 left-1 w-3 h-3 border-b-2 border-l-2 border-cyan-300" />
+                <div className="absolute bottom-1 right-1 w-3 h-3 border-b-2 border-r-2 border-cyan-300" />
+                <span>📷</span>
+              </div>
+              <p className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest mb-2">QR Scanner Viewfinder</p>
+              <div className="bg-navy-900 p-4 rounded-xl border border-navy-800 text-white text-sm sm:text-base leading-relaxed text-left font-medium">
+                {question.scenario}
+              </div>
+            </div>
+          )}
+
+          {/* Standard SMS Message Bubble Layout (Fallback) */}
+          {medium === 'sms' && (
+            <div className="max-w-md mx-auto rounded-2xl overflow-hidden border border-blue-900/50 bg-navy-950 p-4 sm:p-5 shadow-xl text-left">
+              <div className="text-center pb-2 mb-3 border-b border-navy-800 text-xs text-navy-400">
+                <p className="font-bold text-white text-sm">Unknown Sender</p>
+                <p className="text-[10px]">Text Message • Today 11:42 AM</p>
+              </div>
+              <div className="bg-navy-800/90 p-4 rounded-2xl rounded-bl-none text-white text-sm sm:text-base leading-relaxed border border-navy-700 shadow-md">
+                {question.scenario}
+              </div>
+            </div>
+          )}
+
+          {/* Core Decision Terminal */}
+          <div className="pt-6 sm:pt-8 text-center border-t border-navy-800/80 mt-6">
+            <div className="badge-pill bg-navy-950 text-shield-300 border-shield-500/40 mb-3 shadow">
+              <span>⚖️</span>
+              <span>Your Cyber Assessment</span>
+            </div>
+
+            <p className="text-white font-black text-xl sm:text-2xl mb-5">
+              {question.question}
+            </p>
+
+            <div className="flex gap-4 sm:gap-6 justify-center">
+              <button
+                onClick={() => handleAnswer('Safe')}
+                disabled={isAnswered}
+                className={`btn-safe flex-1 max-w-[210px] ${
+                  isAnswered
+                    ? selectedAnswer === 'Safe'
+                      ? question.correct_answer === 'Safe'
+                        ? 'ring-4 ring-shield-300 bg-shield-600 scale-105'
+                        : 'ring-4 ring-danger-300 bg-danger-600 scale-105'
+                      : 'opacity-40 cursor-not-allowed'
+                    : 'hover:scale-105'
+                }`}
+              >
+                <span className="text-2xl">✅</span>
+                <span>Safe</span>
+              </button>
+
+              <button
+                onClick={() => handleAnswer('Scam')}
+                disabled={isAnswered}
+                className={`btn-scam flex-1 max-w-[210px] ${
+                  isAnswered
+                    ? selectedAnswer === 'Scam'
+                      ? question.correct_answer === 'Scam'
+                        ? 'ring-4 ring-shield-300 bg-shield-600 scale-105'
+                        : 'ring-4 ring-danger-300 bg-danger-600 scale-105'
+                      : 'opacity-40 cursor-not-allowed'
+                    : 'hover:scale-105'
+                }`}
+              >
+                <span className="text-2xl">🚫</span>
+                <span>Scam</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Post-Answer Educational Feedback & Guidance */}
+      {/* Cyber Threat Intelligence Dossier (Post-Answer Feedback) */}
       {isAnswered && (
         <div className="animate-slide-up space-y-4 mb-8">
-          {/* Result Alert */}
+          {/* Outcome Banner */}
           <div
-            className={`card text-center p-4 border-2 ${
+            className={`card text-center p-4 sm:p-5 border-2 shadow-2xl ${
               selectedAnswer === question.correct_answer
-                ? 'border-shield-500 bg-shield-950/60'
-                : 'border-danger-500 bg-danger-950/60'
+                ? 'border-shield-400 bg-gradient-to-r from-shield-950/90 to-navy-900/90 shadow-shield-500/10'
+                : 'border-danger-400 bg-gradient-to-r from-danger-950/90 to-navy-900/90 shadow-danger-500/10'
             }`}
           >
-            <p className="text-2xl sm:text-3xl font-extrabold mb-1">
+            <p className="text-2xl sm:text-3xl font-black mb-1">
               {selectedAnswer === question.correct_answer
-                ? (isUrdu ? '✅ شاباش! بالکل درست جواب' : '✅ Correct Decision!')
-                : (isUrdu ? '❌ ہوشیار رہیں! یہ غلط تھا' : '❌ Incorrect Assessment')}
+                ? (isUrdu ? '✅ شاباش! آپ کا فیصلہ بالکل درست تھا' : '✅ Decision Verified: Correct!')
+                : (isUrdu ? '❌ ہوشیار رہیں! یہ ایک دھوکہ تھا' : '❌ Security Alert: Incorrect Decision')}
             </p>
-            <p className="text-sm text-navy-200">
+            <p className="text-xs sm:text-sm text-navy-200">
               {selectedAnswer === question.correct_answer
                 ? (isUrdu
-                    ? `+${POINTS_CORRECT} پوائنٹس حاصل ہوئے۔ آپ نے خطرہ درست پہچانا۔`
-                    : `+${POINTS_CORRECT} Points Awarded. Excellent cyber instincts!`)
+                    ? `+${POINTS_CORRECT} پوائنٹس حاصل ہوئے۔ آپ نے ڈیجیٹل خطرہ درست شناخت کیا۔`
+                    : `+${POINTS_CORRECT} Points Awarded. You successfully analyzed the digital indicators!`)
                 : (isUrdu
-                    ? `+${POINTS_LEARNING} سیکھنے کے پوائنٹس۔ نیچے دی گئی وضاحت غور سے پڑھیں۔`
-                    : `+${POINTS_LEARNING} Learning Points. Read the guidance below carefully.`)}
+                    ? `+${POINTS_LEARNING} سیکھنے کے پوائنٹس۔ نیچے دیا گیا حفاظتی تجزیہ غور سے پڑھیں۔`
+                    : `+${POINTS_LEARNING} Learning Points. Study the Threat Intelligence below.`)}
             </p>
           </div>
 
           {/* Hint Card */}
-          <div className="card">
-            <h4 className="text-shield-400 font-bold mb-1 text-sm sm:text-base flex items-center gap-2">
+          <div className="card border-navy-700 bg-navy-900/80">
+            <h4 className="text-shield-400 font-bold mb-1.5 text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2">
               <span>💡</span>
-              <span>{isUrdu ? 'رہنما اصول (Hint)' : 'Security Clue (Hint)'}</span>
+              <span>{isUrdu ? 'حفاظتی اشارہ (Security Clue)' : 'Security Clue (Hint)'}</span>
             </h4>
-            <p className="text-navy-100 text-sm sm:text-base font-urdu" dir="rtl">
+            <p className="text-white text-sm sm:text-base font-urdu leading-relaxed" dir="rtl">
               {question.hint_ur}
             </p>
           </div>
 
-          {/* Urdu Explanation */}
-          <div className="card">
-            <h4 className="text-shield-400 font-bold mb-1 text-sm sm:text-base flex items-center gap-2">
+          {/* Urdu Detailed Explanation */}
+          <div className="card border-navy-700 bg-navy-900/80">
+            <h4 className="text-shield-400 font-bold mb-1.5 text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2">
               <span>🇵🇰</span>
-              <span>{isUrdu ? 'تفصیلی اردو وضاحت' : 'Urdu Explanation'}</span>
+              <span>{isUrdu ? 'تفصیلی اردو رہنمائی' : 'Urdu Detailed Guidance'}</span>
             </h4>
-            <p className="text-navy-100 text-sm sm:text-base font-urdu" dir="rtl">
+            <p className="text-white text-sm sm:text-base font-urdu leading-relaxed" dir="rtl">
               {question.explanation_ur}
             </p>
           </div>
 
-          {/* English Explanation */}
-          <div className="card">
-            <h4 className="text-shield-400 font-bold mb-1 text-sm sm:text-base flex items-center gap-2">
+          {/* English Threat Intelligence Analysis */}
+          <div className="card border-navy-700 bg-navy-900/80 text-left">
+            <h4 className="text-shield-400 font-bold mb-1.5 text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2">
               <span>🇬🇧</span>
-              <span>{isUrdu ? 'انگریزی وضاحت' : 'English Explanation'}</span>
+              <span>Threat Intelligence (English Analysis)</span>
             </h4>
             <p className="text-navy-100 text-sm sm:text-base leading-relaxed">
               {question.explanation_en}
             </p>
           </div>
 
-          {/* Practical Next Action */}
-          <div className="card bg-shield-900/30 border-shield-500/40">
-            <h4 className="text-shield-300 font-bold mb-1 text-sm sm:text-base flex items-center gap-2">
+          {/* Community Defense Protocol */}
+          <div className="card bg-gradient-to-r from-shield-950/60 to-navy-900/90 border-shield-500/50 text-left">
+            <h4 className="text-shield-300 font-bold mb-1.5 text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2">
               <span>🛡️</span>
-              <span>{isUrdu ? 'عملی اقدام (Practical Next Action)' : 'Practical Next Action'}</span>
+              <span>{isUrdu ? 'کمیونٹی حفاظتی اقدام (Defense Action)' : 'Community Defense Protocol'}</span>
             </h4>
-            <p className="text-white text-sm sm:text-base">
+            <p className="text-white text-sm sm:text-base leading-relaxed">
               {question.correct_answer === 'Scam'
                 ? (isUrdu
-                    ? 'فوری طور پر میسج کو نظر انداز کریں، کال کاٹ دیں، بھیجنے والے کو بلاک کریں، اور کسی قابلِ اعتماد بڑے یا استاد کو بتائیں۔'
-                    : 'Immediately avoid replying, block the contact, take a screenshot as evidence, and report it to a trusted adult or school coordinator.')
+                    ? 'فوری طور پر میسج کا جواب نہ دیں، کال کاٹ دیں، رابطے کو بلاک کریں، اور کسی قابلِ اعتماد بڑے یا اسکول کو مطلع کریں۔'
+                    : 'Do not click links or reply. Preserve a screenshot, block the contact immediately, and notify a trusted parent, teacher, or authority.')
                 : (isUrdu
-                    ? 'یہ ایک محفوظ اور معمول کی سرگرمی ہے۔ حفاظت کے اچھے اصول جاری رکھیں اور کبھی بھی اپنے پاس ورڈ یا او ٹی پی کسی کو نہ دیں۔'
-                    : 'This is safe behavior. Maintain these good digital habits and never reveal your private passwords or OTPs.')}
+                    ? 'یہ ایک جائز سرگرمی ہے۔ باقاعدہ حفاظت کے اصول یاد رکھیں اور اپنی شناختی معلومات کسی سے شیئر نہ کریں۔'
+                    : 'This represents legitimate routine activity. Maintain healthy cyber hygiene and never disclose private passwords.')}
             </p>
           </div>
 
-          {/* Next / Result Button */}
-          <div className="text-center pt-2">
-            <button onClick={handleNext} className="btn-primary w-full sm:w-auto text-base sm:text-lg">
+          {/* Advance Button */}
+          <div className="text-center pt-3">
+            <button onClick={handleNext} className="btn-primary w-full sm:w-auto text-base sm:text-lg py-3.5 px-10 shadow-xl">
               {currentQuestionIndex < 9
-                ? (isUrdu ? 'اگلا سوال ➡️' : 'Next Question ➡️')
-                : (isUrdu ? '📊 لیول کا نتیجہ دیکھیں' : '📊 View Level Results')}
+                ? (isUrdu ? 'اگلا چیلنج دیکھیں ➡️' : 'Next Scenario ➡️')
+                : (isUrdu ? '📊 لیول کا نتیجہ اور بیج حاصل کریں' : '📊 View Level Debrief & Badge')}
             </button>
           </div>
         </div>
       )}
 
-      {/* Safety Warning */}
+      {/* Safety Notice */}
       <div className="mt-8">
         <SafetyWarning />
       </div>
@@ -409,19 +516,18 @@ export default function QuizPage() {
   );
 }
 
-// Subcomponent: Level Result Screen
+// Subcomponent: Exhibition-Grade Level Result Screen
 function LevelResult({ levelNum, state, dispatch, navigate, isUrdu, level, questions }) {
   const { score, correctAnswers, maxStreak, answers, levelScores } = state;
   const passed = correctAnswers >= 7;
 
-  // Compute mistake categories for teacher review
   const wrongAnswers = answers.filter((a) => !a.isCorrect);
   const wrongCategories = wrongAnswers.map((a) => {
     const q = questions[a.questionIndex];
-    return q ? q.title_en : 'General Safety';
+    return q ? q.title_en : 'General Cybersecurity';
   });
 
-  // Record results in protected teacher storage inside useEffect
+  // Record results in protected teacher storage
   useEffect(() => {
     if (levelScores[levelNum]?.date) {
       const record = {
@@ -452,98 +558,156 @@ function LevelResult({ levelNum, state, dispatch, navigate, isUrdu, level, quest
 
   const safetyHabits = [
     {
-      en: 'Never share SMS OTPs, verification codes, or PINs with anyone.',
-      ur: 'کبھی بھی اپنا SMS او ٹی پی، تصدیقی کوڈ یا پن کسی کو شیئر نہ کریں۔',
+      en: 'Never share SMS OTPs, temporary verification codes, or bank PINs.',
+      ur: 'کبھی بھی اپنا SMS او ٹی پی، تصدیقی کوڈ یا بینک پن کسی کو نہ بتائیں۔',
     },
     {
       en: 'Always verify unexpected emergencies using a known saved family contact.',
-      ur: 'کسی بھی ہنگامی کال یا مالی مطالبے کی تصدیق پہلے سے محفوظ خاندانی نمبر سے کریں۔',
+      ur: 'کسی بھی ہنگامی رقم کے مطالبے کی تصدیق پہلے سے محفوظ خاندانی نمبر سے کریں۔',
     },
     {
-      en: 'Preserve evidence of scams and report through verified national hotlines.',
-      ur: 'دھوکے کے پیغامات کا ثبوت محفوظ رکھیں اور مصدقہ سرکاری چینلز پر رپورٹ کریں۔',
+      en: 'Preserve evidence of digital extortion and report through verified national channels.',
+      ur: 'دھوکے کے پیغامات کا اسکرین شاٹ رکھیں اور سرکاری ہیلپ لائن (1991) پر رپورٹ کریں۔',
     },
   ];
+
+  // Radial score progress geometry
+  const accuracyPercent = Math.round((correctAnswers / 10) * 100);
+  const radius = 54;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (accuracyPercent / 100) * circumference;
 
   return (
     <div className={`page-container max-w-2xl text-center ${isUrdu ? 'rtl' : ''}`}>
       <div className="animate-slide-up">
-        {/* Big Icon */}
-        <div className={`text-6xl sm:text-7xl mb-3 ${passed ? 'animate-pulse-soft' : ''}`}>
-          {passed ? '🎉' : '💪'}
+        {/* Celebration Aura */}
+        <div className={`text-6xl sm:text-7xl mb-3 ${passed ? 'animate-float' : ''}`}>
+          {passed ? '🎉' : '🛡️'}
         </div>
 
-        <h1 className={`text-3xl sm:text-4xl font-black mb-2 ${passed ? 'text-gradient' : 'text-danger-400'}`}>
+        <div className="badge-pill bg-navy-900 text-shield-300 border-shield-500/40 mb-3 shadow">
+          <span>{passed ? 'Dojo Level Mastery Cleared' : 'Assessment Completed'}</span>
+        </div>
+
+        <h1 className={`text-3xl sm:text-5xl font-black mb-2 tracking-tight ${passed ? 'text-gradient' : 'text-danger-400'}`}>
           {passed
-            ? (isUrdu ? 'شاباش! لیول پاس ہو گیا' : 'Level Cleared!')
-            : (isUrdu ? 'دوبارہ کوشش کریں' : 'Needs Practice (Try Again)')}
+            ? (isUrdu ? 'مبارک ہو! لیول فتح ہو گیا' : 'Level Cleared!')
+            : (isUrdu ? 'دوبارہ مشق کریں' : 'Needs Practice (Try Again)')}
         </h1>
 
-        <p className="text-navy-300 text-sm sm:text-base mb-6">
+        <p className="text-navy-300 text-sm sm:text-base mb-8">
           {level.icon} {isUrdu ? level.name_ur : level.name_en} •{' '}
           {passed
-            ? (isUrdu ? 'اگلا لیول ان لاک ہو گیا ہے!' : 'Next Level Unlocked!')
+            ? (isUrdu ? 'اگلا ڈوجو بیلٹ ان لاک ہو گیا ہے!' : 'Next Belt Tier Unlocked!')
             : (isUrdu ? 'اگلا لیول کھولنے کے لیے کم از کم ۷ درست جوابات درکار ہیں۔' : 'Score at least 7/10 (70%) to unlock the next level.')}
         </p>
 
-        {/* Score Breakdown Card */}
-        <div className="card-glow mb-6">
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
-            <div className="p-2 sm:p-3 bg-navy-900/50 rounded-xl">
-              <p className="text-2xl sm:text-4xl font-black text-shield-400">{score}</p>
-              <p className="text-navy-400 text-xs sm:text-sm font-semibold">{isUrdu ? 'سکور / ۱۰۰' : 'Score / 100'}</p>
+        {/* Circular SVG Gauge & Performance Dashboard */}
+        <div className="card-glow mb-8 p-6">
+          <div className="flex flex-col sm:flex-row items-center justify-around gap-6">
+            {/* SVG Circular Radial Progress */}
+            <div className="relative w-36 h-36 flex items-center justify-center">
+              <svg className="w-full h-full -rotate-90" viewBox="0 0 128 128">
+                <circle
+                  cx="64"
+                  cy="64"
+                  r={radius}
+                  stroke="#102142"
+                  strokeWidth="10"
+                  fill="transparent"
+                />
+                <circle
+                  cx="64"
+                  cy="64"
+                  r={radius}
+                  stroke={passed ? '#24c37f' : '#ef4444'}
+                  strokeWidth="10"
+                  strokeDasharray={circumference}
+                  strokeDashoffset={strokeDashoffset}
+                  strokeLinecap="round"
+                  fill="transparent"
+                  className="transition-all duration-1000 ease-out"
+                />
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className="text-3xl font-black text-white font-mono">{accuracyPercent}%</span>
+                <span className="text-[10px] uppercase font-bold text-navy-400">Accuracy</span>
+              </div>
             </div>
-            <div className="p-2 sm:p-3 bg-navy-900/50 rounded-xl">
-              <p className="text-2xl sm:text-4xl font-black text-white">{correctAnswers}/10</p>
-              <p className="text-navy-400 text-xs sm:text-sm font-semibold">{isUrdu ? 'درست جوابات' : 'Correct (7+ to pass)'}</p>
-            </div>
-            <div className="p-2 sm:p-3 bg-navy-900/50 rounded-xl">
-              <p className="text-2xl sm:text-4xl font-black text-amber-400">{maxStreak}</p>
-              <p className="text-navy-400 text-xs sm:text-sm font-semibold">{isUrdu ? 'بہترین سلسلہ' : 'Best Streak'}</p>
+
+            {/* Metric Tiles */}
+            <div className="grid grid-cols-2 gap-3 flex-1 w-full text-center">
+              <div className="p-3 bg-navy-950/80 rounded-xl border border-navy-800">
+                <p className="text-2xl sm:text-3xl font-black text-shield-400 font-mono">{score}</p>
+                <p className="text-navy-400 text-xs font-semibold">{isUrdu ? 'سکور / ۱۰۰' : 'Score / 100'}</p>
+              </div>
+
+              <div className="p-3 bg-navy-950/80 rounded-xl border border-navy-800">
+                <p className="text-2xl sm:text-3xl font-black text-white font-mono">{correctAnswers}/10</p>
+                <p className="text-navy-400 text-xs font-semibold">{isUrdu ? 'درست جوابات' : 'Correct (7+ pass)'}</p>
+              </div>
+
+              <div className="p-3 bg-navy-950/80 rounded-xl border border-navy-800">
+                <p className="text-2xl sm:text-3xl font-black text-amber-400 font-mono">{maxStreak}</p>
+                <p className="text-navy-400 text-xs font-semibold">{isUrdu ? 'بہترین سلسلہ' : 'Best Streak'}</p>
+              </div>
+
+              <div className="p-3 bg-navy-950/80 rounded-xl border border-navy-800">
+                <p className="text-xl sm:text-2xl font-black text-emerald-400 font-mono">
+                  {passed ? 'PASSED' : 'RETRY'}
+                </p>
+                <p className="text-navy-400 text-xs font-semibold">{isUrdu ? 'حالت' : 'Status'}</p>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Earned Badge */}
+        {/* Shiny 3D Badge Showcase Card */}
         {passed && (
-          <div className="card mb-6 bg-gradient-to-r from-shield-900/30 to-navy-800 border-shield-500/50">
-            <p className="text-shield-400 font-bold text-xs sm:text-sm mb-1 uppercase tracking-wider">
-              🏅 {isUrdu ? 'حاصل کردہ اعزازی بیج' : 'Official Badge Earned'}
-            </p>
-            <p className="text-xl sm:text-2xl font-black text-white">
-              {isUrdu ? level.badge_ur : level.badge_en}
-            </p>
+          <div className="card mb-8 bg-gradient-to-r from-shield-950/90 via-navy-900 to-navy-950 border-shield-400/50 shadow-xl shadow-shield-500/10">
+            <div className="flex items-center justify-center gap-4">
+              <span className="text-5xl animate-float">🏅</span>
+              <div className="text-left">
+                <p className="text-shield-400 font-bold text-xs uppercase tracking-wider">Official Badge Earned</p>
+                <h3 className="text-2xl font-black text-white tracking-tight">
+                  {isUrdu ? level.badge_ur : level.badge_en}
+                </h3>
+                <p className="text-navy-300 text-xs mt-0.5">Verified on School STREAM Exhibition Record</p>
+              </div>
+            </div>
           </div>
         )}
 
-        {/* Habits Learned */}
-        <div className="card mb-6 text-left">
+        {/* 3 Golden Habits */}
+        <div className="card mb-8 text-left border-navy-700">
           <h3 className="text-shield-400 font-bold mb-3 text-sm sm:text-base flex items-center gap-2">
             <span>🛡️</span>
-            <span>{isUrdu ? 'سیکھی گئی ۳ اہم حفاظتی عادات' : '3 Essential Cyber Habits Learned'}</span>
+            <span>{isUrdu ? 'سیکھی گئی ۳ اہم حفاظتی عادات' : '3 Essential Cyber Defense Habits Learned'}</span>
           </h3>
-          <ul className="space-y-2 text-sm text-navy-100">
+          <ul className="space-y-2.5 text-xs sm:text-sm text-navy-100">
             {safetyHabits.map((habit, idx) => (
-              <li key={idx} className="flex items-start gap-2">
-                <span className="text-shield-400 font-bold mt-0.5">✓</span>
-                <span className={isUrdu ? 'font-urdu' : ''}>{isUrdu ? habit.ur : habit.en}</span>
+              <li key={idx} className="flex items-start gap-2.5 bg-navy-950/60 p-2.5 rounded-xl border border-navy-800">
+                <span className="text-shield-400 font-black mt-0.5 text-sm">✓</span>
+                <span className={isUrdu ? 'font-urdu leading-relaxed' : ''}>
+                  {isUrdu ? habit.ur : habit.en}
+                </span>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Review Missed Questions */}
+        {/* Review Missed Scenarios */}
         {wrongAnswers.length > 0 && (
-          <div className="card mb-6 text-left border-danger-500/40">
+          <div className="card mb-8 text-left border-danger-500/40">
             <h3 className="text-danger-400 font-bold mb-3 text-sm sm:text-base flex items-center gap-2">
               <span>📝</span>
-              <span>{isUrdu ? 'جائزہ لینے والے سوالات (Needs Review)' : 'Questions to Review'}</span>
+              <span>{isUrdu ? 'توجہ طلب چیلنجز کا جائزہ' : 'Scenarios to Review (Classroom Focus)'}</span>
             </h3>
             <ul className="space-y-3 text-xs sm:text-sm text-navy-200">
               {wrongAnswers.map((wa) => {
                 const q = questions[wa.questionIndex];
                 return q ? (
-                  <li key={wa.questionIndex} className="p-3 bg-navy-900/60 rounded-xl border border-navy-700/60">
+                  <li key={wa.questionIndex} className="p-3 bg-navy-950/80 rounded-xl border border-navy-800">
                     <p className="font-bold text-white mb-1">
                       {isUrdu ? q.title_ur : q.title_en} —{' '}
                       <span className="text-danger-400">Correct: {q.correct_answer}</span>
@@ -557,21 +721,21 @@ function LevelResult({ levelNum, state, dispatch, navigate, isUrdu, level, quest
         )}
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
           <button
             onClick={() => dispatch({ type: 'RESET_LEVEL' })}
-            className="btn-secondary"
+            className="btn-secondary text-sm sm:text-base"
           >
-            🔄 {isUrdu ? 'دوبارہ کوشش کریں' : 'Try Again'}
+            🔄 {isUrdu ? 'دوبارہ مشق کریں' : 'Try Again'}
           </button>
 
           {passed && (
             <>
               <button
                 onClick={() => navigate(`/certificate/${levelNum}`)}
-                className="btn-primary"
+                className="btn-primary text-sm sm:text-base"
               >
-                📜 {isUrdu ? 'سرٹیفکیٹ حاصل کریں' : 'Get Certificate'}
+                📜 {isUrdu ? 'سرٹیفکیٹ حاصل کریں' : 'Claim Certificate'}
               </button>
 
               {levelNum < 4 && (
@@ -580,15 +744,15 @@ function LevelResult({ levelNum, state, dispatch, navigate, isUrdu, level, quest
                     dispatch({ type: 'START_LEVEL', payload: levelNum + 1 });
                     navigate(`/quiz/${levelNum + 1}`);
                   }}
-                  className="btn-primary bg-blue-600 hover:bg-blue-500"
+                  className="btn-primary bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-sm sm:text-base border-blue-400/40"
                 >
-                  ➡️ {isUrdu ? 'اگلا ڈوجو لیول' : 'Next Dojo Level'}
+                  ➡️ {isUrdu ? 'اگلا ڈوجو بیلٹ' : 'Next Dojo Stage'}
                 </button>
               )}
             </>
           )}
 
-          <button onClick={() => navigate('/levels')} className="btn-secondary">
+          <button onClick={() => navigate('/levels')} className="btn-secondary text-sm sm:text-base">
             🏯 {isUrdu ? 'تمام لیولز' : 'All Levels'}
           </button>
         </div>
