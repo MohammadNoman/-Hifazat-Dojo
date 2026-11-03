@@ -10,8 +10,9 @@ export default function Navbar() {
   const links = [
     { to: '/', label_en: 'Home', label_ur: 'ہوم' },
     { to: '/levels', label_en: 'Levels', label_ur: 'لیولز' },
+    { to: '/how-to-play', label_en: 'How to Play', label_ur: 'کیسے کھیلیں' },
+    { to: '/for-teachers', label_en: 'For Teachers', label_ur: 'اساتذہ' },
     { to: '/about', label_en: 'Safety Guide', label_ur: 'حفاظتی گائیڈ' },
-    { to: '/teacher', label_en: 'Teachers', label_ur: 'اساتذہ' },
   ];
 
   function toggleLanguage() {
@@ -25,21 +26,21 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-2 text-shield-400 font-extrabold text-base sm:text-lg hover:text-shield-300 transition-colors"
+            className="flex items-center gap-2 text-shield-400 font-extrabold text-base sm:text-lg hover:text-shield-300 transition-colors flex-shrink-0"
           >
             <span className="text-xl sm:text-2xl drop-shadow">🛡️</span>
-            <span className="tracking-tight">Hifazat Dojo</span>
+            <span className="tracking-tight hidden xs:inline">Hifazat Dojo</span>
           </Link>
 
           {/* Navigation links & Language Switcher */}
-          <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto py-1">
             {links.map((link) => {
               const isActive = location.pathname === link.to;
               return (
                 <Link
                   key={link.to}
                   to={link.to}
-                  className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-150 ${
+                  className={`px-2 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-150 whitespace-nowrap ${
                     isActive
                       ? 'bg-shield-500/20 text-shield-300 border border-shield-500/40'
                       : 'text-navy-200 hover:text-white hover:bg-navy-800'
@@ -54,10 +55,10 @@ export default function Navbar() {
             <button
               onClick={toggleLanguage}
               title={isUrdu ? 'Switch to English' : 'اردو میں تبدیل کریں'}
-              className="ml-1 sm:ml-2 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold bg-navy-800 hover:bg-navy-700 text-shield-400 border border-shield-500/30 transition-all active:scale-95 cursor-pointer flex items-center gap-1.5"
+              className="ml-1 sm:ml-2 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold bg-navy-800 hover:bg-navy-700 text-shield-400 border border-shield-500/30 transition-all active:scale-95 cursor-pointer flex items-center gap-1.5 flex-shrink-0"
             >
               <span className="text-sm">{isUrdu ? '🇬🇧' : '🇵🇰'}</span>
-              <span className="hidden xs:inline">{isUrdu ? 'English' : 'اردو'}</span>
+              <span className="hidden sm:inline">{isUrdu ? 'English' : 'اردو'}</span>
             </button>
           </div>
         </div>

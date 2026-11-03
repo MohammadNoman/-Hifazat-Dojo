@@ -90,13 +90,13 @@ export default function HeroPage() {
           <span>🥋</span>
           <span>{isUrdu ? 'ڈوجو ٹریننگ شروع کریں' : 'Enter Dojo Challenge'}</span>
         </Link>
-        <Link to="/about" className="btn-secondary text-base sm:text-lg">
-          <span>🛡️</span>
-          <span>{isUrdu ? 'حفاظتی اصول اور رہنمائی' : 'Security Guide & Rules'}</span>
+        <Link to="/how-to-play" className="btn-secondary text-base sm:text-lg">
+          <span>📖</span>
+          <span>{isUrdu ? 'کیسے کھیلیں (۴ آسان مراحل)' : 'How to Play (4 Steps)'}</span>
         </Link>
-        <Link to="/teacher" className="btn-secondary text-base sm:text-lg">
+        <Link to="/for-teachers" className="btn-secondary text-base sm:text-lg">
           <span>👨‍🏫</span>
-          <span>{isUrdu ? 'اساتذہ ڈیش بورڈ' : 'Teacher Dashboard'}</span>
+          <span>{isUrdu ? 'اساتذہ گائیڈ اور ڈیش بورڈ' : 'For Teachers Guide'}</span>
         </Link>
       </div>
 
