@@ -28,6 +28,7 @@ It educates students, teachers, and parents on identifying digital threats—spe
   - 📷 **Tactile QR Code Scanner Simulation** (Malicious parking/poster QR codes vs safe payment codes)
   - 🏫 **Official School Notice Board** (Verified educational announcements)
 - **🎯 70% Mastery Unlocking:** Standard game progression requires scoring at least 7/10 (70%) to advance to the next rank.
+- **🔄 Session Persistence & Resume:** Automatic client-side saving of student progress, scores, and completed levels with an instant **"Resume Last Session"** jump banner on the home screen.
 - **🌐 Bilingual & RTL Support:** Seamless instant switching between **Urdu** (with Nastaliq styling and native RTL orientation) and **English**.
 - **💡 Educational Feedback:** Every scenario provides immediate Safe/Scam validation, hint, Urdu explanation, English explanation, and a practical next action.
 - **📜 Instant PDF & PNG Certificates:** 

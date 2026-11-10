@@ -38,6 +38,13 @@ export default function TeacherPage() {
 
   function handleReset() {
     clearTeacherData();
+    dispatch({ type: 'RESET_ALL' });
+    try {
+      localStorage.removeItem('hifazat_dojo_state');
+      localStorage.removeItem('hifazat_dojo_cert_meta');
+    } catch (e) {
+      console.error('Failed to clear local storage on reset', e);
+    }
     setRecords([]);
     setShowResetConfirm(false);
   }

@@ -5,9 +5,16 @@ import { useGame, useGameDispatch } from '../store/GameContext';
 import { getAppTitle, getOfflineNotice } from '../data/questions';
 
 export default function HeroPage() {
-  const { language } = useGame();
+  const { language, unlockedLevels = [1], completedLevels = [], levelScores = {} } = useGame();
   const dispatch = useGameDispatch();
   const isUrdu = language === 'ur';
+
+  // Determine active/resumable session
+  const highestUnlocked = Math.max(...(unlockedLevels || [1]), 1);
+  const hasSavedSession = completedLevels.length > 0 || Object.keys(levelScores).length > 0;
+  const nextPlayableLevel = completedLevels.includes(highestUnlocked) && highestUnlocked < 4 
+    ? highestUnlocked + 1 
+    : highestUnlocked;
 
   function setLang(langCode) {
     dispatch({ type: 'SET_LANGUAGE', payload: langCode });
@@ -80,6 +87,35 @@ export default function HeroPage() {
           <span>English Mode</span>
         </button>
       </div>
+
+      {/* Resume Last Session Banner if previous progress exists */}
+      {hasSavedSession && (
+        <div className="w-full max-w-xl mx-auto mb-6 p-3.5 rounded-2xl bg-gradient-to-r from-shield-950/90 via-navy-900/90 to-shield-950/90 border border-shield-400/50 shadow-xl shadow-shield-500/10 animate-fade-in flex flex-col sm:flex-row items-center justify-between gap-3 text-left">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl animate-pulse">🔄</span>
+            <div>
+              <p className="text-white text-xs sm:text-sm font-extrabold flex items-center gap-2">
+                <span>{isUrdu ? 'پچھلا سیشن محفوظ ہے!' : 'Resume Previous Session!'}</span>
+                <span className="text-[10px] bg-shield-500/30 text-shield-200 border border-shield-400/40 px-2 py-0.5 rounded-full font-mono">
+                  Level {nextPlayableLevel}
+                </span>
+              </p>
+              <p className="text-navy-300 text-[11px] sm:text-xs">
+                {isUrdu
+                  ? `${completedLevels.length} لیولز مکمل • براہ راست وہاں سے جاری رکھیں جہاں چھوڑا تھا`
+                  : `${completedLevels.length} stage(s) completed • Pick up right where you left off`}
+              </p>
+            </div>
+          </div>
+          <Link
+            to={`/quiz/${nextPlayableLevel}`}
+            className="btn-primary text-xs sm:text-sm py-2 px-4 shadow-md whitespace-nowrap"
+          >
+            <span>▶️</span>
+            <span>{isUrdu ? 'سیشن جاری رکھیں' : 'Resume Session'}</span>
+          </Link>
+        </div>
+      )}
 
       {/* Core Action CTAs */}
       <div
