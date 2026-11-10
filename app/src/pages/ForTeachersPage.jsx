@@ -73,6 +73,15 @@ export default function ForTeachersPage() {
       desc_ur:
         'ایک کلک میں تمام کارکردگی کا ڈیٹا ایکسل میں ڈاؤن لوڈ کریں تاکہ STREAM پروجیکٹ میں ثبوت کے طور پر لگایا جا سکے۔',
     },
+    {
+      icon: '🔓',
+      title_en: 'Practice Mode (All 4 Levels Unlocked)',
+      title_ur: 'پریکٹس موڈ (تمام ۴ لیولز کھلے ہیں)',
+      desc_en:
+        'Enable Practice Mode with a single toggle on the Levels screen or in this Dashboard. All four Dojo levels unlock immediately without needing to complete previous levels, enabling instant classroom demonstration.',
+      desc_ur:
+        'پریکٹس موڈ آن کرنے سے تمام چاروں ڈوجو لیولز بغیر پچھلے لیول پاس کیے کھل جاتے ہیں، تاکہ استاد کلاس میں کسی بھی لیول کا براہِ راست مظاہرہ کر سکیں۔',
+    },
   ];
 
   return (

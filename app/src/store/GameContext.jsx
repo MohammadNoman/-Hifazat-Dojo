@@ -24,6 +24,7 @@ function saveState(state) {
       completedLevels: state.completedLevels,
       levelScores: state.levelScores,
       learnerName: state.learnerName,
+      practiceMode: state.practiceMode,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
   } catch (e) {
@@ -65,6 +66,7 @@ const defaultState = {
   completedLevels: [],
   levelScores: {},
   learnerName: '',
+  practiceMode: false, // Teacher Practice Mode: unlocks all 4 levels for classroom demonstration
   // Active quiz session state
   currentLevel: null,
   currentQuestionIndex: 0,
@@ -90,6 +92,12 @@ function gameReducer(state, action) {
 
     case 'SET_LEARNER_NAME':
       return { ...state, learnerName: action.payload };
+
+    case 'TOGGLE_PRACTICE_MODE':
+      return { ...state, practiceMode: !state.practiceMode };
+
+    case 'SET_PRACTICE_MODE':
+      return { ...state, practiceMode: !!action.payload };
 
     case 'START_LEVEL':
       return {
@@ -204,7 +212,7 @@ export function GameProvider({ children }) {
   // Sync state changes to localStorage
   useEffect(() => {
     saveState(state);
-  }, [state.language, state.unlockedLevels, state.completedLevels, state.levelScores, state.learnerName]);
+  }, [state.language, state.unlockedLevels, state.completedLevels, state.levelScores, state.learnerName, state.practiceMode]);
 
   // Synchronize document dir and lang for global RTL/LTR consistency
   useEffect(() => {

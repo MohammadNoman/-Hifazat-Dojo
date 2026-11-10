@@ -6,7 +6,7 @@ import ShieldIcon from '../components/ShieldIcon';
 
 export default function CertificatePage() {
   const { levelId } = useParams();
-  const { language, learnerName, levelScores, completedLevels } = useGame();
+  const { language, learnerName, levelScores, completedLevels, practiceMode } = useGame();
   const dispatch = useGameDispatch();
   const isUrdu = language === 'ur';
 
@@ -17,11 +17,11 @@ export default function CertificatePage() {
   const levelNum = isFinal ? null : parseInt(levelId, 10);
   const level = isFinal ? null : LEVELS.find((l) => l.id === levelNum);
 
-  // Declarative navigation guards
-  if (isFinal && completedLevels.length < 4) {
+  // Declarative navigation guards (bypassed in Teacher Practice Mode for exhibition demonstration)
+  if (!practiceMode && isFinal && completedLevels.length < 4) {
     return <Navigate to="/levels" replace />;
   }
-  if (!isFinal && (!level || (!completedLevels.includes(levelNum) && !levelScores[levelNum]?.passed))) {
+  if (!practiceMode && !isFinal && (!level || (!completedLevels.includes(levelNum) && !levelScores[levelNum]?.passed))) {
     return <Navigate to="/levels" replace />;
   }
 

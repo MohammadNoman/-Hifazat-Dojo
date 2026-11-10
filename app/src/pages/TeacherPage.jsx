@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { useGame, loadTeacherData, clearTeacherData, saveTeacherRecord } from '../store/GameContext';
+import { useGame, useGameDispatch, loadTeacherData, clearTeacherData, saveTeacherRecord } from '../store/GameContext';
 import SafetyWarning from '../components/SafetyWarning';
 import { LEVELS } from '../data/questions';
 
@@ -7,7 +7,8 @@ const DEFAULT_PASSPHRASE = 'hifazat123';
 const PASSPHRASE_KEY = 'hifazat_teacher_passphrase';
 
 export default function TeacherPage() {
-  const { language } = useGame();
+  const { language, practiceMode } = useGame();
+  const dispatch = useGameDispatch();
   const isUrdu = language === 'ur';
 
   const [enteredPassphrase, setEnteredPassphrase] = useState('');
@@ -291,6 +292,19 @@ export default function TeacherPage() {
               ⚡ {isUrdu ? 'ڈیمو ڈیٹا لوڈ کریں' : 'Load Demo Evidence'}
             </button>
           )}
+
+          <button
+            onClick={() => dispatch({ type: 'TOGGLE_PRACTICE_MODE' })}
+            className={`text-xs sm:text-sm py-2 px-3 rounded-xl font-bold cursor-pointer transition-all flex items-center gap-1.5 ${
+              practiceMode
+                ? 'bg-purple-600 text-white shadow-md shadow-purple-900/40 ring-2 ring-purple-300/50'
+                : 'bg-navy-800 text-purple-300 border border-purple-500/40 hover:bg-navy-700'
+            }`}
+            title="Unlock all 4 Dojo levels without taking previous quizzes"
+          >
+            <span>{practiceMode ? '🔓' : '🔒'}</span>
+            <span>{practiceMode ? (isUrdu ? 'پریکٹس موڈ: آن' : 'Practice Mode: ON') : (isUrdu ? 'پریکٹس موڈ: بند' : 'Practice Mode: OFF')}</span>
+          </button>
 
           <button onClick={exportCSV} className="btn-primary text-xs sm:text-sm py-2 px-3 sm:px-4">
             📥 {isUrdu ? 'CSV ڈاؤن لوڈ کریں' : 'Export CSV Evidence'}
