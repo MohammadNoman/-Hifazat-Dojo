@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useGame, useGameDispatch, saveTeacherRecord } from '../store/GameContext';
 import { getQuestionsByLevel, LEVELS, POINTS_CORRECT, POINTS_LEARNING } from '../data/questions';
 import SafetyWarning from '../components/SafetyWarning';
+import ScenarioCard, { getScenarioType } from '../components/ScenarioCard';
 
 export default function QuizPage() {
   const { levelId } = useParams();
@@ -164,19 +165,7 @@ export default function QuizPage() {
   }
 
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
-
-  // Medium Classification & Authentic Simulator Layout
-  const scenarioText = question.scenario.toLowerCase();
-  let medium = 'sms';
-  if (scenarioText.includes('call') || scenarioText.includes('caller')) {
-    medium = 'call';
-  } else if (scenarioText.includes('whatsapp')) {
-    medium = 'whatsapp';
-  } else if (scenarioText.includes('email')) {
-    medium = 'email';
-  } else if (scenarioText.includes('qr') || scenarioText.includes('scan') || scenarioText.includes('poster')) {
-    medium = 'qr';
-  }
+  const medium = getScenarioType(question);
 
   return (
     <div className={`page-container max-w-3xl ${isUrdu ? 'rtl' : ''}`}>
@@ -233,10 +222,12 @@ export default function QuizPage() {
               <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
             </div>
             <span className="text-[11px] font-mono font-bold text-navy-300 ml-2 uppercase tracking-wider">
-              {medium === 'whatsapp' && '🟢 WhatsApp Protocol Simulation'}
+              {medium === 'whatsapp' && '🟢 Mobile Chat Simulation'}
               {medium === 'call' && '📞 Voice Transmission Simulation'}
-              {medium === 'email' && '✉️ Secure Webmail Simulation'}
-              {medium === 'qr' && '📷 Tactical QR Scanner Simulation'}
+              {medium === 'email' && '✉️ Webmail Client Simulation'}
+              {(medium === 'qr' || medium === 'qr_safe') && '📷 QR Code Scanner Simulation'}
+              {medium === 'bank_otp' && '🏦 Demo Bank Alert Simulation'}
+              {medium === 'safe_notice' && '🏫 Official Notice Simulation'}
               {medium === 'sms' && '💬 SMS Cellular Simulation'}
             </span>
           </div>
@@ -271,149 +262,61 @@ export default function QuizPage() {
           </div>
         </div>
 
-        {/* Medium-Specific Simulation Display */}
-        <div className="p-4 sm:p-6 bg-gradient-to-b from-navy-950/60 to-navy-900/60">
-          {/* WhatsApp Layout */}
-          {medium === 'whatsapp' && (
-            <div className="max-w-md mx-auto rounded-2xl overflow-hidden border border-emerald-900/50 shadow-xl bg-[#0b141a]">
-              <div className="bg-[#1f2c34] p-3 flex items-center gap-3 border-b border-navy-800">
-                <div className="w-10 h-10 rounded-full bg-[#374248] flex items-center justify-center text-xl">👤</div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-white text-sm font-bold truncate">Unknown Contact</p>
-                  <p className="text-[#8696a0] text-xs">+92 300 0000000</p>
-                </div>
-                <div className="text-[#8696a0] text-xs">🔒 End-to-end encrypted</div>
-              </div>
-              <div className="p-4 space-y-3 bg-[#0b141a]">
-                <div className="bg-[#1f2c34] p-3 rounded-2xl rounded-tl-none max-w-[90%] border border-[#2a3942] text-white text-sm sm:text-base leading-relaxed">
-                  <p className="mb-2">{question.scenario}</p>
-                  <span className="text-[10px] text-[#8696a0] block text-right">11:42 AM</span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Incoming Phone Call Layout */}
-          {medium === 'call' && (
-            <div className="max-w-md mx-auto rounded-2xl overflow-hidden border border-amber-900/40 bg-gradient-to-b from-navy-900 to-navy-950 p-6 text-center shadow-xl">
-              <div className="w-20 h-20 rounded-full bg-navy-800 border-2 border-amber-500/50 mx-auto mb-3 flex items-center justify-center text-4xl shadow-lg shadow-amber-500/10 animate-pulse-soft">
-                📞
-              </div>
-              <p className="text-amber-400 text-xs uppercase tracking-widest font-mono font-bold mb-1">Incoming Voice Call</p>
-              <h3 className="text-xl font-bold text-white mb-1">Unknown Number / Urgent Alert</h3>
-              <p className="text-navy-400 text-xs mb-4">Caller Audio Transcript:</p>
-              <div className="bg-navy-950/90 p-4 rounded-xl border border-navy-800 text-white text-sm sm:text-base leading-relaxed mb-4 text-left font-medium">
-                "{question.scenario}"
-              </div>
-              <div className="flex justify-center gap-8 text-xs font-bold text-navy-400">
-                <div className="flex flex-col items-center gap-1">
-                  <div className="w-12 h-12 rounded-full bg-danger-600/80 flex items-center justify-center text-xl text-white">✕</div>
-                  <span>Decline</span>
-                </div>
-                <div className="flex flex-col items-center gap-1">
-                  <div className="w-12 h-12 rounded-full bg-shield-500/80 flex items-center justify-center text-xl text-white">📞</div>
-                  <span>Answer</span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Email Inbox Layout */}
-          {medium === 'email' && (
-            <div className="max-w-lg mx-auto rounded-xl overflow-hidden border border-navy-700 bg-navy-950 shadow-xl text-left">
-              <div className="bg-navy-900 p-3 border-b border-navy-800 flex items-center justify-between text-xs text-navy-300">
-                <span className="font-bold text-white flex items-center gap-1.5">
-                  <span>✉️</span> Webmail Client
-                </span>
-                <span className="bg-danger-900/40 border border-danger-500/40 text-danger-300 px-2 py-0.5 rounded text-[10px] font-bold">
-                  External Sender
-                </span>
-              </div>
-              <div className="p-4 space-y-2 border-b border-navy-800/80 text-xs">
-                <p><span className="text-navy-400">From:</span> <strong className="text-white">Official Support &lt;urgent-verify@mail-notice.net&gt;</strong></p>
-                <p><span className="text-navy-400">Subject:</span> <strong className="text-shield-300">{question.title_en}</strong></p>
-                <p><span className="text-navy-400">To:</span> <span className="text-navy-300">student@school.edu.pk</span></p>
-              </div>
-              <div className="p-4 text-white text-sm sm:text-base leading-relaxed bg-navy-950">
-                {question.scenario}
-              </div>
-            </div>
-          )}
-
-          {/* QR Scan / Poster Layout */}
-          {medium === 'qr' && (
-            <div className="max-w-md mx-auto rounded-2xl overflow-hidden border border-cyan-800/50 bg-navy-950 p-6 text-center shadow-xl">
-              <div className="w-24 h-24 mx-auto mb-4 border-2 border-dashed border-cyan-400/80 rounded-2xl flex items-center justify-center text-4xl bg-navy-900/80 relative">
-                <div className="absolute top-1 left-1 w-3 h-3 border-t-2 border-l-2 border-cyan-300" />
-                <div className="absolute top-1 right-1 w-3 h-3 border-t-2 border-r-2 border-cyan-300" />
-                <div className="absolute bottom-1 left-1 w-3 h-3 border-b-2 border-l-2 border-cyan-300" />
-                <div className="absolute bottom-1 right-1 w-3 h-3 border-b-2 border-r-2 border-cyan-300" />
-                <span>📷</span>
-              </div>
-              <p className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest mb-2">QR Scanner Viewfinder</p>
-              <div className="bg-navy-900 p-4 rounded-xl border border-navy-800 text-white text-sm sm:text-base leading-relaxed text-left font-medium">
-                {question.scenario}
-              </div>
-            </div>
-          )}
-
-          {/* Standard SMS Message Bubble Layout (Fallback) */}
-          {medium === 'sms' && (
-            <div className="max-w-md mx-auto rounded-2xl overflow-hidden border border-blue-900/50 bg-navy-950 p-4 sm:p-5 shadow-xl text-left">
-              <div className="text-center pb-2 mb-3 border-b border-navy-800 text-xs text-navy-400">
-                <p className="font-bold text-white text-sm">Unknown Sender</p>
-                <p className="text-[10px]">Text Message • Today 11:42 AM</p>
-              </div>
-              <div className="bg-navy-800/90 p-4 rounded-2xl rounded-bl-none text-white text-sm sm:text-base leading-relaxed border border-navy-700 shadow-md">
-                {question.scenario}
-              </div>
-            </div>
-          )}
+        {/* Realistic Mobile Message / Notification Card Component */}
+        <div className="p-4 sm:p-6 bg-gradient-to-b from-navy-950/70 via-navy-900/60 to-navy-950/80">
+          <ScenarioCard question={question} language={language} />
 
           {/* Core Decision Terminal */}
           <div className="pt-6 sm:pt-8 text-center border-t border-navy-800/80 mt-6">
             <div className="badge-pill bg-navy-950 text-shield-300 border-shield-500/40 mb-3 shadow">
               <span>⚖️</span>
-              <span>Your Cyber Assessment</span>
+              <span>{isUrdu ? 'آپ کا سکیورٹی فیصلہ' : 'Your Cyber Assessment'}</span>
             </div>
 
             <p className="text-white font-black text-xl sm:text-2xl mb-5">
               {question.question}
             </p>
 
-            <div className="flex gap-4 sm:gap-6 justify-center">
+            {/* Large, Tactile, High-Contrast Mobile-Friendly Safe / Scam Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3.5 sm:gap-6 justify-center max-w-xl mx-auto px-2">
               <button
                 onClick={() => handleAnswer('Safe')}
                 disabled={isAnswered}
-                className={`btn-safe flex-1 max-w-[210px] ${
+                className={`btn-safe flex-1 py-4 sm:py-5 px-6 sm:px-8 text-lg sm:text-xl font-black rounded-2xl transition-all duration-200 cursor-pointer ${
                   isAnswered
                     ? selectedAnswer === 'Safe'
                       ? question.correct_answer === 'Safe'
-                        ? 'ring-4 ring-shield-300 bg-shield-600 scale-105'
-                        : 'ring-4 ring-danger-300 bg-danger-600 scale-105'
-                      : 'opacity-40 cursor-not-allowed'
-                    : 'hover:scale-105'
+                        ? 'ring-4 ring-shield-300 bg-shield-600 scale-105 shadow-xl shadow-shield-500/40'
+                        : 'ring-4 ring-danger-300 bg-danger-600 scale-105 shadow-xl shadow-danger-500/40'
+                      : 'opacity-35 cursor-not-allowed'
+                    : 'hover:scale-[1.03] active:scale-95 shadow-lg shadow-shield-500/25'
                 }`}
               >
-                <span className="text-2xl">✅</span>
-                <span>Safe</span>
+                <span className="text-2xl sm:text-3xl">🛡️ ✅</span>
+                <span className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 leading-tight">
+                  <span>SAFE</span>
+                  <span className="text-xs sm:text-sm font-normal opacity-90 font-urdu">(محفوظ)</span>
+                </span>
               </button>
 
               <button
                 onClick={() => handleAnswer('Scam')}
                 disabled={isAnswered}
-                className={`btn-scam flex-1 max-w-[210px] ${
+                className={`btn-scam flex-1 py-4 sm:py-5 px-6 sm:px-8 text-lg sm:text-xl font-black rounded-2xl transition-all duration-200 cursor-pointer ${
                   isAnswered
                     ? selectedAnswer === 'Scam'
                       ? question.correct_answer === 'Scam'
-                        ? 'ring-4 ring-shield-300 bg-shield-600 scale-105'
-                        : 'ring-4 ring-danger-300 bg-danger-600 scale-105'
-                      : 'opacity-40 cursor-not-allowed'
-                    : 'hover:scale-105'
+                        ? 'ring-4 ring-shield-300 bg-shield-600 scale-105 shadow-xl shadow-shield-500/40'
+                        : 'ring-4 ring-danger-300 bg-danger-600 scale-105 shadow-xl shadow-danger-500/40'
+                      : 'opacity-35 cursor-not-allowed'
+                    : 'hover:scale-[1.03] active:scale-95 shadow-lg shadow-danger-500/25'
                 }`}
               >
-                <span className="text-2xl">🚫</span>
-                <span>Scam</span>
+                <span className="text-2xl sm:text-3xl">🚨 🚫</span>
+                <span className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 leading-tight">
+                  <span>SCAM</span>
+                  <span className="text-xs sm:text-sm font-normal opacity-90 font-urdu">(دھوکہ)</span>
+                </span>
               </button>
             </div>
           </div>

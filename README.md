@@ -18,18 +18,33 @@ It educates students, teachers, and parents on identifying digital threats—spe
   2. **Level 2: Hoshiyar Hifazat** (Medium — Class 8–9) • *Phishing Awareness* • 🏅 Badge: `Phish Finder`
   3. **Level 3: Expert Hifazat** (Hard — Class 10) • *Money Scams* • 🏅 Badge: `Scam Stopper`
   4. **Level 4: Community Guardian** (Very Hard — Teachers, Parents, Adults) • *Community Reporting* • 🏅 Badge: `Community Guardian`
-- **🎯 70% Mastery Unlocking:** Students must score at least 7/10 (70%) to unlock the subsequent level.
-- **🌐 Bilingual & RTL Support:** Seamless switching between **Urdu** (with Nastaliq typography and right-to-left orientation) and **English** (Sindhi translation reserved for Version 2).
+- **🔓 Teacher Practice Mode:** Single-click toggle on the Level Select and Teacher screens that instantly unlocks all 4 levels, allowing instructors and exhibitors to jump to any scenario immediately without needing prerequisite scores.
+- **📱 Authentic Platform Simulators (`ScenarioCard`):** Scenarios are rendered inside high-fidelity mock interfaces mirroring real-world communication channels:
+  - 💬 **SMS Cellular Bubble** (Emergency & Lottery alerts)
+  - 🟢 **WhatsApp / Mobile Chat** (Voice notes, fake group links & urgent help requests)
+  - 📞 **Incoming Voice Call & Audio Transcript** (Bank impersonation, lottery callers)
+  - 🏦 **Demo Bank Security Alert** (Card expiry & OTP phishing)
+  - ✉️ **Secure Webmail Client** (Contest winning & attachment traps)
+  - 📷 **Tactile QR Code Scanner Simulation** (Malicious parking/poster QR codes vs safe payment codes)
+  - 🏫 **Official School Notice Board** (Verified educational announcements)
+- **🎯 70% Mastery Unlocking:** Standard game progression requires scoring at least 7/10 (70%) to advance to the next rank.
+- **🌐 Bilingual & RTL Support:** Seamless instant switching between **Urdu** (with Nastaliq styling and native RTL orientation) and **English**.
 - **💡 Educational Feedback:** Every scenario provides immediate Safe/Scam validation, hint, Urdu explanation, English explanation, and a practical next action.
-- **📜 Offline Printable Certificates:** Generates a student certificate displaying learner name, level completed, badge, score, and timestamp with `@media print` layout.
-- **🏆 Ultimate Achievement:** Completing all 4 levels awards the prestigious **Hifazat Dojo Community Guardian** credential.
-- **👨‍🏫 Protected Teacher Dashboard:**
+- **📜 Instant PDF & PNG Certificates:** 
+  - Download official diplomas directly as high-resolution **PDF** or **PNG** using client-side rendering (`jspdf` + `html2canvas`).
+  - School and instructor customization: input **Student Name**, **School / Institution Name**, select **Role** (Student, Teacher, Parent, Community Member), and customize **Instructor Name & Designation** with persistent saving.
+  - Standard print layout (`@media print`) also fully supported.
+- **📖 Dedicated Guide & How-To Pages:**
+  - **How to Play (`/how-to-play`):** Visual 4-step guide on analyzing sender identities, spotting red flags, and earning credentials.
+  - **For Teachers / Classroom Guide (`/for-teachers`):** Lesson plans, learning objectives, and live demonstration tips for school exhibitions.
+- **🏆 Ultimate Achievement:** Completing all 4 levels awards the prestigious **Hifazat Dojo Community Guardian Master Diploma**.
+- **👨‍🏫 Protected Teacher Dashboard (`/teacher`):**
   - Passphrase-protected (`hifazat123` default)
   - Anonymous class analytics: participation by level, average score, pass rates
   - Common misconception and mistake category analysis
   - **1-Click CSV Export** for STREAM project evidence and portfolio submission
   - Printable **Family Safety Pledge Cards** for community engagement
-  - LocalStorage reset option.
+  - LocalStorage reset and practice mode controls.
 - **🔒 Zero-Data Privacy & Safety:**
   - 100% client-side, zero backend, zero paid APIs, no tracking, no cookies.
   - Prominent safety disclaimer on all screens:  
@@ -62,17 +77,20 @@ STREAM PROJECT/
         ├── store/
         │   └── GameContext.jsx# React Context + Reducer + LocalStorage engine
         ├── components/
-        │   ├── Navbar.jsx     # Header navigation with language sync
-        │   ├── ShieldIcon.jsx # Inline vector cyber-shield visual
-        │   └── SafetyWarning.jsx# Standard bilingual disclaimer
+        │   ├── Navbar.jsx         # Header navigation with language sync
+        │   ├── ShieldIcon.jsx     # Inline vector cyber-shield visual
+        │   ├── SafetyWarning.jsx  # Standard bilingual disclaimer
+        │   └── ScenarioCard.jsx   # Realistic mock simulator for SMS, WhatsApp, Calls, Bank OTP, etc.
         └── pages/
             ├── HeroPage.jsx       # Landing page with CTA and guides
+            ├── HowToPlayPage.jsx  # Visual 4-step scam spotting guide
+            ├── ForTeachersPage.jsx# Lesson plans & classroom demonstration strategies
             ├── LanguagePage.jsx   # Urdu / English / Sindhi selector
-            ├── LevelSelectPage.jsx# 4-stage Dojo level grid
-            ├── QuizPage.jsx       # Interactive scenario card + Result screen
-            ├── CertificatePage.jsx# Printable award certificate
+            ├── LevelSelectPage.jsx# 4-stage Dojo level grid + Practice Mode toggle
+            ├── QuizPage.jsx       # Interactive scenario simulator + Result screen
+            ├── CertificatePage.jsx# Customizable PDF / PNG certificate generator
             ├── AboutPage.jsx      # Cyber safety pillars & official hotlines
-            └── TeacherPage.jsx    # Analytics, CSV export & family cards
+            └── TeacherPage.jsx    # Analytics, CSV export, Practice Mode & family cards
 ```
 
 ---
