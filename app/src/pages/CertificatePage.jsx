@@ -5,6 +5,7 @@ import jsPDF from 'jspdf';
 import { useGame, useGameDispatch } from '../store/GameContext';
 import { LEVELS } from '../data/questions';
 import ShieldIcon from '../components/ShieldIcon';
+import DojoIdBadge from '../components/DojoIdBadge';
 
 const ROLE_OPTIONS = [
   { value: '', label_en: '-- Select Class / Role (Optional) --', label_ur: '-- کلاس یا کردار منتخب کریں (اختیاری) --' },
@@ -50,6 +51,7 @@ export default function CertificatePage() {
   const [isDownloadingPNG, setIsDownloadingPNG] = useState(false);
   const [isDownloadingPDF, setIsDownloadingPDF] = useState(false);
   const [showConfig, setShowConfig] = useState(!learnerName && !savedMeta.name);
+  const [activeTab, setActiveTab] = useState('certificate'); // 'certificate' | 'id_badge'
 
   const certRef = useRef(null);
 
@@ -423,18 +425,76 @@ export default function CertificatePage() {
         </div>
       )}
 
-      {/* =========================================================================
-          PRINTABLE & CAPTURABLE A4 LANDSCAPE CERTIFICATE FRAME
-          Security Shield Themed, Gold & Navy Ornamental Border, No Hardcoded Schools
-         ========================================================================= */}
-      <div
-        ref={certRef}
-        className="certificate-container bg-[#ffffff] text-[#0d1b2a] rounded-2xl p-6 sm:p-10 md:p-12 border-[8px] sm:border-[12px] border-[#0e1d38] relative overflow-hidden shadow-2xl mx-auto"
-        style={{
-          boxSizing: 'border-box',
-          minHeight: '520px',
-        }}
-      >
+      {/* View Switcher Tabs: Full Diploma vs Pocket ID Badge */}
+      <div className="no-print flex flex-wrap items-center justify-center gap-3 mb-6">
+        <button
+          type="button"
+          onClick={() => setActiveTab('certificate')}
+          className={`px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center gap-2 ${
+            activeTab === 'certificate'
+              ? 'bg-gradient-to-r from-shield-500 to-emerald-600 text-white shadow-lg shadow-shield-500/25 ring-2 ring-shield-300/50'
+              : 'bg-navy-900/90 text-navy-300 hover:text-white border border-navy-700/80 hover:bg-navy-800'
+          }`}
+        >
+          <span className="text-base sm:text-lg">📜</span>
+          <span>{isUrdu ? 'مکمل ڈپلوما سرٹیفکیٹ (A4)' : 'Full Honors Diploma (A4)'}</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab('id_badge')}
+          className={`px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center gap-2 ${
+            activeTab === 'id_badge'
+              ? 'bg-gradient-to-r from-shield-500 to-emerald-600 text-white shadow-lg shadow-shield-500/25 ring-2 ring-shield-300/50'
+              : 'bg-navy-900/90 text-navy-300 hover:text-white border border-navy-700/80 hover:bg-navy-800'
+          }`}
+        >
+          <span className="text-base sm:text-lg">🪪</span>
+          <span>{isUrdu ? 'سٹوڈنٹ پاکٹ آئی ڈی بیج (لینیارڈ کارڈ)' : 'Student Pocket ID Badge (Lanyard)'}</span>
+        </button>
+      </div>
+
+      {activeTab === 'id_badge' ? (
+        <div className="card p-6 sm:p-8 max-w-xl mx-auto text-center border-shield-500/40 bg-navy-900/90 shadow-2xl animate-fade-in">
+          <div className="mb-4">
+            <span className="text-3xl">🪪</span>
+            <h3 className="text-lg sm:text-xl font-black text-white mt-1">
+              {isUrdu ? 'سٹوڈنٹ سائبر گارڈین آئی ڈی بیج (پاکٹ / لینیارڈ سائز)' : 'Cyber Guardian Pocket ID Badge (Lanyard Size)'}
+            </h3>
+            <p className="text-xs text-navy-300 mt-1 max-w-md mx-auto">
+              {isUrdu
+                ? 'کریڈٹ کارڈ / لینیارڈ سائز کا ڈیجیٹل بیج، جو اسکول کارڈ ہولڈر یا بیگ میں لگانے کے لیے پی این جی یا پی ڈی ایف میں ڈاؤن لوڈ کیا جا سکتا ہے۔'
+                : 'Credit card / lanyard-sized credential formatted for school badge holders, wallet, or exhibition lanyards.'}
+            </p>
+          </div>
+
+          <div className="flex justify-center mb-2">
+            <DojoIdBadge
+              name={name}
+              schoolName={schoolName}
+              role={role}
+              levelName={isFinal ? 'Community Guardian Master' : level?.name_en}
+              badge={isFinal ? 'Community Guardian' : level?.badge_en}
+              levelNum={isFinal ? 4 : levelNum}
+              score={isFinal ? totalScore : (scoreData?.score ?? 100)}
+              date={completionDateRaw}
+              isUrdu={isUrdu}
+            />
+          </div>
+        </div>
+      ) : (
+        /* =========================================================================
+            PRINTABLE & CAPTURABLE A4 LANDSCAPE CERTIFICATE FRAME
+            Security Shield Themed, Gold & Navy Ornamental Border, No Hardcoded Schools
+           ========================================================================= */
+        <div
+          ref={certRef}
+          className="certificate-container bg-[#ffffff] text-[#0d1b2a] rounded-2xl p-6 sm:p-10 md:p-12 border-[8px] sm:border-[12px] border-[#0e1d38] relative overflow-hidden shadow-2xl mx-auto"
+          style={{
+            boxSizing: 'border-box',
+            minHeight: '520px',
+          }}
+        >
         {/* Ornate Gold Filigree Inner Border */}
         <div className="absolute inset-2 sm:inset-3 border-2 border-[#b8860b]/70 pointer-events-none rounded-lg" />
         <div className="absolute inset-3.5 sm:inset-5 border border-[#0e1d38]/20 pointer-events-none rounded" />
@@ -601,6 +661,7 @@ export default function CertificatePage() {
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { useGame, useGameDispatch, saveTeacherRecord } from '../store/GameContex
 import { getQuestionsByLevel, LEVELS, POINTS_CORRECT, POINTS_LEARNING } from '../data/questions';
 import SafetyWarning from '../components/SafetyWarning';
 import ScenarioCard, { getScenarioType } from '../components/ScenarioCard';
+import { playSuccessSound, playWrongSound, playCompleteSound, playClickSound } from '../utils/sound';
 
 export default function QuizPage() {
   const { levelId } = useParams();
@@ -22,6 +23,7 @@ export default function QuizPage() {
     isAnswered,
     selectedAnswer,
     showResult,
+    soundEnabled = true,
   } = state;
 
   const isUrdu = language === 'ur';
@@ -88,6 +90,11 @@ export default function QuizPage() {
   function handleAnswer(answer) {
     if (isAnswered) return;
     const isCorrect = answer === question.correct_answer;
+    if (isCorrect) {
+      playSuccessSound(soundEnabled);
+    } else {
+      playWrongSound(soundEnabled);
+    }
     dispatch({
       type: 'ANSWER_QUESTION',
       payload: {
@@ -99,10 +106,11 @@ export default function QuizPage() {
   }
 
   function handleNext() {
+    playClickSound(soundEnabled);
     dispatch({ type: 'NEXT_QUESTION' });
   }
 
-  // Student Audio Playback / Narration handler
+  // Student Audio Playback / Narration handler (Web Speech API)
   function toggleScenarioAudio() {
     if (recordedAudioUrl) {
       const audio = new Audio(recordedAudioUrl);
@@ -112,8 +120,8 @@ export default function QuizPage() {
       return;
     }
 
-    if (!window.speechSynthesis) {
-      alert(isUrdu ? 'براؤزر آڈیو کو سپورٹ نہیں کرتا' : 'Speech synthesis not supported on this browser.');
+    if (typeof window === 'undefined' || !window.speechSynthesis) {
+      alert(isUrdu ? 'براؤزر سپیچ سنتھیسس کو سپورٹ نہیں کرتا۔' : 'Speech synthesis not supported on this browser.');
       return;
     }
 
@@ -121,9 +129,23 @@ export default function QuizPage() {
       window.speechSynthesis.cancel();
       setIsPlayingAudio(false);
     } else {
+      window.speechSynthesis.cancel();
       const textToRead = question.scenario;
       const utterance = new SpeechSynthesisUtterance(textToRead);
-      utterance.rate = 0.9;
+      utterance.rate = 0.92;
+      utterance.pitch = 1.0;
+
+      if (isUrdu) {
+        utterance.lang = 'ur-PK';
+        try {
+          const voices = window.speechSynthesis.getVoices();
+          const match = voices.find((v) => v.lang.startsWith('ur') || v.lang.startsWith('ar') || v.lang.includes('PK'));
+          if (match) utterance.voice = match;
+        } catch (_) {}
+      } else {
+        utterance.lang = 'en-US';
+      }
+
       utterance.onend = () => setIsPlayingAudio(false);
       utterance.onerror = () => setIsPlayingAudio(false);
       setIsPlayingAudio(true);
@@ -236,15 +258,15 @@ export default function QuizPage() {
           <div className="flex items-center gap-1.5 no-print">
             <button
               onClick={toggleScenarioAudio}
-              className={`px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1 transition-all cursor-pointer ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm ${
                 isPlayingAudio
-                  ? 'bg-shield-500 text-white animate-pulse'
-                  : 'bg-navy-800 hover:bg-navy-700 text-navy-200 border border-navy-700'
+                  ? 'bg-shield-500 text-white animate-pulse ring-2 ring-shield-300/60'
+                  : 'bg-navy-850 hover:bg-navy-750 text-shield-300 border border-shield-500/40 hover:border-shield-400'
               }`}
-              title="Narrate Scenario"
+              title={isUrdu ? 'منظرنامہ سنیں (Listen to scenario)' : 'Narrate scenario audio'}
             >
-              <span>{isPlayingAudio ? '⏹️' : '🔊'}</span>
-              <span>{isPlayingAudio ? 'Stop' : 'Listen'}</span>
+              <span className="text-sm">{isPlayingAudio ? '⏹️' : '🔊'}</span>
+              <span>{isPlayingAudio ? (isUrdu ? 'روکیں (Stop)' : 'Stop Narration') : (isUrdu ? 'سنیں (Listen)' : 'Listen (Audio)')}</span>
             </button>
 
             <button
@@ -421,8 +443,15 @@ export default function QuizPage() {
 
 // Subcomponent: Exhibition-Grade Level Result Screen
 function LevelResult({ levelNum, state, dispatch, navigate, isUrdu, level, questions }) {
-  const { score, correctAnswers, maxStreak, answers, levelScores } = state;
+  const { score, correctAnswers, maxStreak, answers, levelScores, soundEnabled = true } = state;
   const passed = correctAnswers >= 7;
+
+  // Play celebration victory fanfare if level cleared
+  useEffect(() => {
+    if (passed) {
+      playCompleteSound(soundEnabled);
+    }
+  }, [passed, soundEnabled]);
 
   const wrongAnswers = answers.filter((a) => !a.isCorrect);
   const wrongCategories = wrongAnswers.map((a) => {

@@ -25,6 +25,7 @@ function saveState(state) {
       levelScores: state.levelScores,
       learnerName: state.learnerName,
       practiceMode: state.practiceMode,
+      soundEnabled: state.soundEnabled,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
   } catch (e) {
@@ -67,6 +68,7 @@ const defaultState = {
   levelScores: {},
   learnerName: '',
   practiceMode: false, // Teacher Practice Mode: unlocks all 4 levels for classroom demonstration
+  soundEnabled: true, // Master audio / exhibition sound effects toggle
   // Active quiz session state
   currentLevel: null,
   currentQuestionIndex: 0,
@@ -98,6 +100,12 @@ function gameReducer(state, action) {
 
     case 'SET_PRACTICE_MODE':
       return { ...state, practiceMode: !!action.payload };
+
+    case 'TOGGLE_SOUND':
+      return { ...state, soundEnabled: !state.soundEnabled };
+
+    case 'SET_SOUND':
+      return { ...state, soundEnabled: !!action.payload };
 
     case 'START_LEVEL':
       return {
@@ -212,7 +220,7 @@ export function GameProvider({ children }) {
   // Sync state changes to localStorage
   useEffect(() => {
     saveState(state);
-  }, [state.language, state.unlockedLevels, state.completedLevels, state.levelScores, state.learnerName, state.practiceMode]);
+  }, [state.language, state.unlockedLevels, state.completedLevels, state.levelScores, state.learnerName, state.practiceMode, state.soundEnabled]);
 
   // Synchronize document dir and lang for global RTL/LTR consistency
   useEffect(() => {

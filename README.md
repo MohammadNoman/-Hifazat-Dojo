@@ -31,10 +31,20 @@ It educates students, teachers, and parents on identifying digital threats—spe
 - **🔄 Session Persistence & Resume:** Automatic client-side saving of student progress, scores, and completed levels with an instant **"Resume Last Session"** jump banner on the home screen.
 - **🌐 Bilingual & RTL Support:** Seamless instant switching between **Urdu** (with Nastaliq styling and native RTL orientation) and **English**.
 - **💡 Educational Feedback:** Every scenario provides immediate Safe/Scam validation, hint, Urdu explanation, English explanation, and a practical next action.
-- **📜 Instant PDF & PNG Certificates:** 
+- **📜 Instant PDF & PNG Certificates & Pocket ID Cards:** 
   - Download official diplomas directly as high-resolution **PDF** or **PNG** using client-side rendering (`jspdf` + `html2canvas`).
+  - **🪪 Student Dojo Pocket ID Badge:** Dedicated wallet/lanyard size (CR80 format) card generator featuring the student's name, school, rank badge, score, and personal cyber safety pledge.
   - School and instructor customization: input **Student Name**, **School / Institution Name**, select **Role** (Student, Teacher, Parent, Community Member), and customize **Instructor Name & Designation** with persistent saving.
   - Standard print layout (`@media print`) also fully supported.
+- **🔊 Audio Narration & Accessibility (Web Speech API):** 
+  - Interactive **"Listen / سنیں"** read-aloud button for every scenario in Urdu (`ur-PK`) and English (`en-US`), helping young learners and exhibition attendees listen to scenarios effortlessly.
+- **🔇 Master Exhibition Audio Synthesizer:**
+  - Built-in zero-asset Web Audio API tone generator for tactile chimes, correct answer melodies, gentle warning sounds, and victory fanfares.
+  - Quick **Sound ON / Muted** toggle in the top navigation bar for noisy or quiet school exhibition halls.
+- **📱 PWA & 100% Offline Installation:**
+  - Progressive Web App with custom service worker (`sw.js`) and web manifest (`manifest.json`).
+  - Pre-caches entire app shell, questions, and media so the booth can run without internet on Android tablets, laptops, and touch displays.
+  - Direct 1-click **"Install App"** prompt when opened in modern browsers.
 - **📖 Dedicated Guide & How-To Pages:**
   - **How to Play (`/how-to-play`):** Visual 4-step guide on analyzing sender identities, spotting red flags, and earning credentials.
   - **For Teachers / Classroom Guide (`/for-teachers`):** Lesson plans, learning objectives, and live demonstration tips for school exhibitions.
@@ -67,29 +77,36 @@ STREAM PROJECT/
     ├── vercel.json            # SPA routing rewrite rules
     ├── index.html             # HTML shell with Google Fonts & SVG favicon
     ├── public/
+    │   ├── favicon.svg        # App logo vector favicon
+    │   ├── icons.svg          # PWA vector app icon
+    │   ├── manifest.json      # PWA web app manifest
+    │   ├── sw.js              # Offline precache Service Worker
     │   └── questions.json     # Static asset copy
     └── src/
         ├── index.css          # Tailwind CSS v4, custom theme & print rules
-        ├── main.jsx           # App entry point
+        ├── main.jsx           # App entry point & SW registration
         ├── App.jsx            # Router and base layout
+        ├── utils/
+        │   └── sound.js       # Web Audio API offline sound synthesizer
         ├── data/
         │   ├── questions.js   # Question bank loaders & level constants
         │   └── questions.json # Bundled JSON questions
         ├── store/
         │   └── GameContext.jsx# React Context + Reducer + LocalStorage engine
         ├── components/
-        │   ├── Navbar.jsx         # Header navigation with language sync
+        │   ├── Navbar.jsx         # Header navigation with sound & language sync
         │   ├── ShieldIcon.jsx     # Inline vector cyber-shield visual
         │   ├── SafetyWarning.jsx  # Standard bilingual disclaimer
-        │   └── ScenarioCard.jsx   # Realistic mock simulator for SMS, WhatsApp, Calls, Bank OTP, etc.
+        │   ├── ScenarioCard.jsx   # Realistic mock simulator for SMS, WhatsApp, Calls, Bank OTP, etc.
+        │   └── DojoIdBadge.jsx    # Pocket & lanyard-sized Cyber Guardian ID card
         └── pages/
-            ├── HeroPage.jsx       # Landing page with CTA and guides
+            ├── HeroPage.jsx       # Landing page with CTA, Resume Session & guides
             ├── HowToPlayPage.jsx  # Visual 4-step scam spotting guide
             ├── ForTeachersPage.jsx# Lesson plans & classroom demonstration strategies
             ├── LanguagePage.jsx   # Urdu / English / Sindhi selector
             ├── LevelSelectPage.jsx# 4-stage Dojo level grid + Practice Mode toggle
-            ├── QuizPage.jsx       # Interactive scenario simulator + Result screen
-            ├── CertificatePage.jsx# Customizable PDF / PNG certificate generator
+            ├── QuizPage.jsx       # Interactive scenario simulator + Audio speech + Result screen
+            ├── CertificatePage.jsx# Customizable PDF / PNG certificate & ID badge hub
             ├── AboutPage.jsx      # Cyber safety pillars & official hotlines
             └── TeacherPage.jsx    # Analytics, CSV export, Practice Mode & family cards
 ```
