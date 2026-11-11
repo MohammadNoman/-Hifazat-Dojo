@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { useGame, useGameDispatch, loadTeacherData, clearTeacherData, saveTeacherRecord } from '../store/GameContext';
 import SafetyWarning from '../components/SafetyWarning';
 import { LEVELS } from '../data/questions';
@@ -316,6 +317,15 @@ export default function TeacherPage() {
           <button onClick={exportCSV} className="btn-primary text-xs sm:text-sm py-2 px-3 sm:px-4">
             📥 {isUrdu ? 'CSV ڈاؤن لوڈ کریں' : 'Export CSV Evidence'}
           </button>
+
+          <Link
+            to="/certificate/final"
+            className="btn-secondary text-xs sm:text-sm py-2 px-3 border-amber-500/40 text-amber-300 hover:text-white flex items-center gap-1"
+            title="Preview Certificates and Student ID Badges"
+          >
+            <span>🪪</span>
+            <span>{isUrdu ? 'سرٹیفکیٹ و بیجز' : 'Certificates & Badges'}</span>
+          </Link>
 
           <button
             onClick={() => setPrintCard(!printCard)}

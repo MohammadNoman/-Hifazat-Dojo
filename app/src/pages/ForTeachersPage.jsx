@@ -82,6 +82,24 @@ export default function ForTeachersPage() {
       desc_ur:
         'پریکٹس موڈ آن کرنے سے تمام چاروں ڈوجو لیولز بغیر پچھلے لیول پاس کیے کھل جاتے ہیں، تاکہ استاد کلاس میں کسی بھی لیول کا براہِ راست مظاہرہ کر سکیں۔',
     },
+    {
+      icon: '🪪',
+      title_en: 'Pocket ID Badges & Diplomas',
+      title_ur: 'سٹوڈنٹ پاکٹ آئی ڈی کارڈز اور ڈپلوما',
+      desc_en:
+        'Generate official A4 certificates or compact credit-card sized (CR80) Cyber Guardian ID badges for students to print, laminate, and wear on lanyards.',
+      desc_ur:
+        'طلباء کے لیے اے ۴ سائز کا مکمل ڈپلوما یا کریڈٹ کارڈ سائز کا پاکٹ بیج پی ڈی ایف اور تصویر میں ڈاؤن لوڈ کریں تاکہ وہ اسکول بیگ یا گلے میں لگا سکیں۔',
+    },
+    {
+      icon: '🔊',
+      title_en: 'Audio Narration & Exhibition Mute',
+      title_ur: 'آڈیو بیان اور ساؤنڈ کنٹرول',
+      desc_en:
+        'Every scenario can be read aloud in Urdu and English with the "Listen" button for accessible learning. The top navigation bar includes an instant Sound/Mute toggle for noisy halls.',
+      desc_ur:
+        'ہر منظرنامہ اردو اور انگریزی میں سنیں بٹن سے سنا جا سکتا ہے، اور ہال کے ماحول کے مطابق ہیڈر سے آواز کو فوری بند یا آن کیا جا سکتا ہے۔',
+    },
   ];
 
   return (
